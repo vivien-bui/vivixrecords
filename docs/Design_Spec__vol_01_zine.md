@@ -64,7 +64,7 @@ One quiet Vietnamese line under an English poem/quote — occasional, never full
   - `<Page>` — the fixed `.pg` box; accepts a `variant` prop (`photo` | `text` | `quote-vellum` | `quote-glass` | `duotone` | `tile-grid` | `blank-bleed`)
   - `<PhotoCutout>` — takes an image + a named/custom clip-path
   - `<Folio>` — absolutely-positioned page number, always rendered last so it can't be pushed off
-  - Minor asides (`vol 01.1` mini fold-out) stay a distinct component/format — deliberately not spreads, for contrast.
+  - Minor asides (`vol 01a` mini fold-out) stay a distinct component/format — deliberately not spreads, for contrast.
 
 ## Screen map — vol 01 ("one more time"), 19 pages
 | pages | content |
