@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,200;1,6..72,300;1,6..72,400;1,6..72,500&amp;family=IBM+Plex+Mono:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html, body { margin:0; padding:0; background:#eee7d8; }
+body { -webkit-font-smoothing: antialiased; }
+a { color:#a8412a; text-decoration:none; }
+a:hover { color:#7d2f1c; }
+em.hl { font-style:italic; color:#c98a4a; }
+.snap-wrap { scroll-snap-type: y mandatory; height:100vh; overflow-y:auto; overflow-x:hidden; }
+.snap-sec { scroll-snap-align:center; min-height:100vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:5vh 0; }
+.spread-row { display:flex; align-items:stretch; gap:3px; }
+.pg { aspect-ratio:3/4; height:min(84vh,860px); box-sizing:border-box; position:relative; overflow:hidden; }
+@media (max-width:899px) {
+  .spread-row { display:flex; gap:0; overflow-x:auto; scroll-snap-type:x mandatory; width:100vw; }
+  .pg { flex:0 0 100vw; height:88vh; aspect-ratio:auto; scroll-snap-align:start; }
+}
+</style>
+</helmet>
+
+<div style="position:relative; background:#eee7d8; color:#221f19; font-family:'Newsreader',Georgia,serif; font-weight:300; overflow-x:hidden;">
+
+  <div style="position:fixed; inset:0; z-index:130; pointer-events:none; mix-blend-mode:overlay; opacity: {{ grainOpacity }}; background-image:url(&quot;data:image/svg+xml;utf8,&lt;svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'&gt;&lt;filter id='n'&gt;&lt;feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/&gt;&lt;feColorMatrix type='saturate' values='0'/&gt;&lt;/filter&gt;&lt;rect width='180' height='180' filter='url(%23n)' opacity='0.5'/&gt;&lt;/svg&gt;&quot;);"></div>
+
+  <div style="position:fixed; top:0; left:0; right:0; z-index:120; display:flex; align-items:baseline; justify-content:space-between; gap:24px; padding:15px 5vw; background:rgba(238,231,216,0.88); backdrop-filter:blur(10px); border-bottom:1px solid rgba(34,31,25,0.08); font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:0.06em;">
+    <div style="display:flex; gap:26px; align-items:baseline;">
+      <div onClick="{{ goArchive }}" style="cursor:pointer; color:#221f19;">( archive )</div>
+      <div onClick="{{ goAbout }}" style="cursor:pointer; color:#7a7768;">( about )</div>
+    </div>
+    <div style="color:#a8412a; text-align:right;">{{ here }}</div>
+  </div>
+
+  <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative; z-index:1;">
+      <div style="min-height:86vh; padding:19vh 6vw 6vh; display:flex; flex-direction:column; box-sizing:border-box;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a8776;">a living record — updated when there is something to say</div>
+        <h1 style="margin:0; font-weight:200; font-size:clamp(56px,11vw,158px); line-height:0.9; letter-spacing:-0.025em; color:#1c1a14; margin-top:28px;">
+          <span style="color:#a8412a;">(</span> <span style="font-style:italic;">the archive</span> <span style="color:#a8412a;">)</span>
+        </h1>
+        <div style="margin-top:38px; max-width:44ch; font-size:19px; line-height:1.75; color:#54503f;">issues, dated. poetry, photographs, and small reflections — some built around a large thing, some around a passing one.</div>
+      </div>
+
+      <div style="padding:0 6vw 16vh; display:flex; flex-direction:column; gap:14vh;">
+
+        <div onClick="{{ goVol01 }}" style="cursor:pointer; width:min(62vw,720px); margin-left:3vw; transition:transform 650ms cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-6px);">
+          <div style="position:relative; width:100%; aspect-ratio:16/10; background:#171310; overflow:hidden;">
+            <img src="uploads/4063fef6-2a2d-4a76-a1f9-18115edd49fa.jpeg" alt="the shrine, warm lamplight" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.9) brightness(0.88);" />
+            <div style="position:absolute; inset:0; background:linear-gradient(200deg, rgba(14,11,8,0.12), rgba(14,11,8,0.62) 78%);"></div>
+            <div style="position:absolute; left:6%; top:10%; font-family:'Newsreader',serif; font-style:italic; font-size:19px; line-height:1.2; color:#f2ead9; text-shadow:0 2px 10px rgba(0,0,0,0.4);">one more<br />time</div>
+            <div style="position:absolute; right:6%; bottom:8%; text-align:right; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.12em; color:#e2c9a8;">vol 01<br><span style="color:#cabfa9;">aug 2026</span></div>
+            <div style="position:absolute; left:6%; bottom:8%; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#cabfa9;">nineteen pages</div>
+          </div>
+          <div style="display:flex; align-items:baseline; gap:18px; margin-top:16px;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:13px; color:#1c1a14;">( vol 01 — one more time )</div>
+            <div style="flex:1; height:1px; background:rgba(34,31,25,0.18);"></div>
+          </div>
+          <div style="margin-top:8px; font-style:italic; font-size:20px; color:#6d6a58;">grief, a shrine, and the decision to stay open</div>
+        </div>
+
+        <div onClick="{{ goVol011 }}" style="cursor:pointer; width:min(30vw,320px); margin-left:auto; margin-right:8vw; transition:transform 650ms cubic-bezier(.2,.7,.2,1);" style-hover="transform:translateY(-6px);">
+          <div style="width:100%; aspect-ratio:3/4; background:#dcd4bf; border:1px solid rgba(34,31,25,0.12); position:relative;">
+            <image-slot id="v011-cover" shape="rect" fit="cover" placeholder="cover — vol 01.1"></image-slot>
+          </div>
+          <div style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#1c1a14;">( vol 01 . a — chris moving )</div>
+          <div style="margin-top:6px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:#a19d89;">aside · jul 2026</div>
+        </div>
+
+        <div style="margin-left:3vw; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:#b0ac97;">( more when there is more )</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isVol01 }}" hint-placeholder-val="{{ false }}">
+    <div class="snap-wrap">
+
+      <div class="snap-sec" style="background:#171310;">
+        <div class="pg" style="width:min(64vh,660px); background:#171310; padding:9vh 5vw 6vh; display:flex; flex-direction:column;">
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.34em; text-transform:uppercase; color:#d9a877;">vol 01</div>
+          <h1 style="margin:16px 0 0; font-weight:200; font-size:clamp(38px,6.5vw,72px); line-height:0.96; letter-spacing:-0.03em; color:#f2ead9;">
+            <span style="color:#e2874a;">(</span> <span style="font-style:italic;">one more<br>time</span> <span style="color:#e2874a;">)</span>
+          </h1>
+          <div style="position:relative; margin-top:auto; margin-bottom:auto; width:100%; height:48%;">
+            <div style="position:absolute; width:44%; height:44%; left:30%; top:2%; clip-path:circle(50% at 50% 50%); background-image:url('uploads/4063fef6-2a2d-4a76-a1f9-18115edd49fa.jpeg'); background-size:320% auto; background-position:64% 44%; box-shadow:8px 22px 40px rgba(0,0,0,0.45);"></div>
+            <svg viewBox="0 0 300 300" style="position:absolute; left:-6%; top:-8%; width:70%; height:80%; overflow:visible; pointer-events:none;">
+              <path d="M60,260 Q68,220 54,190 Q42,164 58,140 Q70,120 56,96 Q46,78 60,54" fill="none" stroke="#e6c79a" stroke-width="1.4" stroke-linecap="round" opacity="0.8"></path>
+              <path d="M90,270 Q100,234 84,206 Q72,184 88,158 Q100,138 86,112" fill="none" stroke="#cabfa9" stroke-width="1.1" stroke-linecap="round" opacity="0.55"></path>
+            </svg>
+            <svg viewBox="0 0 120 120" style="position:absolute; right:4%; bottom:2%; width:34%; height:34%; overflow:visible; pointer-events:none;">
+              <g fill="none" stroke="#e2874a" stroke-width="1.2" opacity="0.75">
+                <ellipse cx="60" cy="34" rx="16" ry="24"></ellipse>
+                <ellipse cx="86" cy="60" rx="16" ry="24" transform="rotate(72 86 60)"></ellipse>
+                <ellipse cx="76" cy="90" rx="16" ry="24" transform="rotate(144 76 90)"></ellipse>
+                <ellipse cx="44" cy="90" rx="16" ry="24" transform="rotate(216 44 90)"></ellipse>
+                <ellipse cx="34" cy="60" rx="16" ry="24" transform="rotate(288 34 60)"></ellipse>
+                <circle cx="60" cy="62" r="8"></circle>
+              </g>
+            </svg>
+          </div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#cabfa9;">lamplight and smoke, gathered</div>
+          <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; line-height:1.8; color:#cabfa9; margin-top:auto;">( july 2026 )<br>( sydney )</div>
+          <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.24em; color:#9a8f77;">01</div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#1a1108;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#171310;">
+            <img src="uploads/4063fef6-2a2d-4a76-a1f9-18115edd49fa.jpeg" alt="the shrine, warm lamplight" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.9) brightness(0.88);">
+            <div style="position:absolute; inset:0; background:linear-gradient(200deg, rgba(14,11,8,0.1), rgba(14,11,8,0.45) 75%);"></div>
+            <div style="position:absolute; left:6%; top:6%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#d9a877;">i — the shrine</div>
+            <div style="position:absolute; left:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">02</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:12vh 11% 10vh; box-sizing:border-box; display:flex; flex-direction:column; overflow:hidden;">
+            <p style="margin:0; font-size:14px; line-height:1.75; color:#1c1a14; text-wrap:pretty;">i lost my cat two months ago and it's still weighing on me. i made him a little shrine, and it helped a lot. it made me feel spiritual and connected to him in a way that was lost when he passed.</p>
+            <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#a8412a;">( thương nhớ )</div>
+            </sc-if>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">03</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#c9c0a8;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">ii — the undertone</div>
+            <blockquote style="margin:20px 0 0; font-weight:200; font-size:clamp(20px,2.6vw,30px); line-height:1.32; letter-spacing:-0.01em; color:#1c1a14; text-wrap:pretty;">have enough courage to trust love <em class="hl">one more time</em> and always one more time.</blockquote>
+            <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6d6a58;">( maya angelou )</div>
+            <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:14px; font-family:'Newsreader',serif; font-style:italic; font-size:14px; color:#9a8f77;">hãy đủ can đảm để tin vào tình yêu, một lần nữa.</div>
+            </sc-if>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">04</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#e2dac8; padding:8vh 8% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <img src="uploads/67981aed-33cf-4f3b-a95d-82b32be61b1f.jpeg" alt="running up the trail with friends at dusk" style="display:block; width:60%; aspect-ratio:4/5; object-fit:cover; box-shadow:0 14px 28px rgba(34,31,25,0.16);">
+            <div style="margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#8a8776;">running up, before slowing down</div>
+            <div style="margin-top:auto; font-size:14px; line-height:1.7; color:#4a4738;">i'm in a stage of my life where i want to open up and accept all the good life has to offer. and also to go out and find all that goodness.</div>
+            <div style="position:absolute; right:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">05</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#c9c0a8;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#e2dac8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">iii — the day, logged</div>
+            <div style="margin-top:4vh; flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:10px;">
+              <div style="position:relative; overflow:hidden;">
+                <img src="uploads/d54d7aae-371b-417d-bda7-99d760a1f956.jpeg" alt="dinner" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.7) contrast(1.05) brightness(1.05);">
+                <div style="position:absolute; inset:0; background:#a8412a; mix-blend-mode:multiply; opacity:0.22;"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,14,8,0.65), transparent 55%);"></div>
+                <div style="position:absolute; left:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">i</div>
+                <div style="position:absolute; right:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">7:40pm</div>
+                <div style="position:absolute; left:8px; bottom:8px; font-style:italic; font-size:14px; color:#f2ead9;">roasted, together</div>
+              </div>
+              <div style="position:relative; overflow:hidden;">
+                <img src="uploads/4063fef6-2a2d-4a76-a1f9-18115edd49fa.jpeg" alt="the shrine" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.7) contrast(1.05) brightness(0.85);">
+                <div style="position:absolute; inset:0; background:#a8412a; mix-blend-mode:multiply; opacity:0.22;"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,14,8,0.65), transparent 55%);"></div>
+                <div style="position:absolute; left:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">ii</div>
+                <div style="position:absolute; right:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">8:15pm</div>
+                <div style="position:absolute; left:8px; bottom:8px; font-style:italic; font-size:14px; color:#f2ead9;">settling in</div>
+              </div>
+              <div style="position:relative; overflow:hidden;">
+                <img src="uploads/5231b3d9-aba7-4fc0-bafc-3e8ccd8ca708.jpeg" alt="sunset" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.75) contrast(1.02) brightness(0.95);">
+                <div style="position:absolute; inset:0; background:#a8412a; mix-blend-mode:multiply; opacity:0.22;"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,14,8,0.65), transparent 55%);"></div>
+                <div style="position:absolute; left:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">iii</div>
+                <div style="position:absolute; right:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">6:05pm</div>
+                <div style="position:absolute; left:8px; bottom:8px; font-style:italic; font-size:14px; color:#f2ead9;">up the hill</div>
+              </div>
+              <div style="position:relative; overflow:hidden;">
+                <img src="uploads/4a97b4d2-078a-4ceb-a29c-904b8aed2d0d.jpeg" alt="night skyline" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.7) contrast(1.05) brightness(1.35);">
+                <div style="position:absolute; inset:0; background:#a8412a; mix-blend-mode:multiply; opacity:0.22;"></div>
+                <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,14,8,0.65), transparent 55%);"></div>
+                <div style="position:absolute; left:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">iv</div>
+                <div style="position:absolute; right:8px; top:8px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:#f2ead9;">9:35pm</div>
+                <div style="position:absolute; left:8px; bottom:8px; font-style:italic; font-size:14px; color:#f2ead9;">a run by the water</div>
+              </div>
+            </div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8367;">06</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#171310; padding:11vh 12% 8vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="position:relative; flex:1; overflow:hidden;">
+              <img src="uploads/8197c550-380a-43e1-b6d1-6989f11acdd7.jpeg" alt="workstation at zac's, monitor glowing" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.85) contrast(1.02) brightness(1.04);">
+            </div>
+            <div style="margin-top:14px; display:flex; justify-content:space-between; align-items:baseline;">
+              <div style="font-style:italic; font-size:14px; color:#f2ead9;">job hunting, zac's desk</div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:#cabfa9;">1:40pm</div>
+            </div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">07</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#181008;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#181008;">
+            <img src="uploads/pasted-1785918334581-0.png" alt="incense smoke, blurred" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:blur(14px) saturate(0.75) brightness(0.55) contrast(1.05); transform:scale(1.15);">
+            <div style="position:absolute; inset:0; background:radial-gradient(50% 45% at 62% 40%, rgba(226,135,74,0.28), rgba(24,16,8,0.2) 60%, rgba(24,16,8,0.75) 100%);"></div>
+            <div style="position:absolute; left:6%; right:8%; top:9vh; padding:26px 4px; -webkit-backdrop-filter:blur(20px) saturate(1.1); backdrop-filter:blur(20px) saturate(1.1); background:radial-gradient(ellipse 100% 100% at 40% 40%, rgba(255,205,150,0.1), rgba(20,14,8,0.28) 75%);">
+              <p style="margin:0; font-size:clamp(14px,1.7vw,18px); line-height:1.55; color:#f6ecdb; text-wrap:pretty;">somehow you're an adult with a whole new friend group and a string of ex lovers and plans every night of the week and strong feelings about the different neighborhoods of your city and bills to pay and new lines forming on your face.</p>
+              <p style="margin:16px 0 0; font-size:clamp(12px,1.4vw,15px); line-height:1.6; color:#d9c6ac; text-wrap:pretty;">do you remember being 14, alone in your room? sad music. you made it out. or you're making it out. it's different now, but it's better.</p>
+              <div style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#e2a06a;">found — @anna</div>
+            </div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#c9a877;">08</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:9vh 8% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <img src="uploads/pasted-1785918334581-0.png" alt="incense, sharp" style="display:block; width:55%; margin-left:auto; margin-right:auto; aspect-ratio:3/4; object-fit:cover; box-shadow:0 16px 32px rgba(34,31,25,0.18);">
+            <div style="margin-top:auto; text-align:center; font-style:italic; font-size:14px; line-height:1.6; color:#6d6a58;">two lines of smoke danced around each other and i couldn't look away.</div>
+            <div style="position:absolute; right:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">09</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#c9c0a8;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">iv — specimens from one day</div>
+            <div style="position:relative; flex:1; margin-top:3vh;">
+              <div style="position:absolute; width:100%; height:60%; left:0; top:0; opacity:0.55; clip-path:polygon(0% 70%, 8% 60%, 8% 45%, 18% 45%, 18% 55%, 30% 55%, 30% 40%, 42% 40%, 42% 58%, 55% 58%, 55% 42%, 68% 42%, 68% 60%, 82% 60%, 82% 48%, 100% 48%, 100% 100%, 0% 100%); background-image:url('uploads/4a97b4d2-078a-4ceb-a29c-904b8aed2d0d.jpeg'); background-size:230% auto; background-position:30% 55%; filter:brightness(1.1) saturate(0.7);"></div>
+              <div style="position:absolute; width:90%; height:70%; left:5%; top:20%; clip-path:polygon(0% 60%, 4% 45%, 4% 20%, 10% 20%, 10% 5%, 16% 5%, 16% 32%, 22% 32%, 22% 12%, 28% 12%, 28% 38%, 36% 38%, 36% 0%, 44% 0%, 44% 30%, 52% 30%, 52% 15%, 60% 15%, 60% 42%, 70% 42%, 70% 22%, 78% 22%, 78% 48%, 88% 48%, 88% 28%, 96% 28%, 96% 50%, 100% 50%, 100% 100%, 0% 100%); background-image:url('uploads/4a97b4d2-078a-4ceb-a29c-904b8aed2d0d.jpeg'); background-size:280% auto; background-position:42% 68%; filter:brightness(1.35) saturate(0.85); box-shadow:0 16px 28px rgba(0,0,0,0.3);"></div>
+              <sc-if value="{{ doodles }}" hint-placeholder-val="{{ true }}">
+                <svg viewBox="0 0 240 200" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;">
+                  <path d="M14,178 Q40,168 62,172 Q90,176 112,166 Q140,154 128,138 Q118,126 138,120 Q168,112 190,120" fill="none" stroke="#1c1a14" stroke-width="1.1" stroke-linecap="round" opacity="0.5"></path>
+                </svg>
+              </sc-if>
+            </div>
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.1em; color:#8a8776;">9:35 &nbsp; 10:15 &nbsp; 10:19</div>
+            <div style="margin-top:4px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#8a8776;">a · i ran along the water here</div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">10</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:8vh 8% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <img src="uploads/5231b3d9-aba7-4fc0-bafc-3e8ccd8ca708.jpeg" alt="sunset" style="display:block; width:100%; aspect-ratio:5/4; object-fit:cover;">
+            <div style="margin-top:8px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#8a8776;">b · after running up a hill</div>
+            <div style="display:flex; align-items:flex-end; gap:14px; margin-top:14px;">
+              <img src="uploads/d54d7aae-371b-417d-bda7-99d760a1f956.jpeg" alt="dinner" style="display:block; width:34%; aspect-ratio:1/1; object-fit:cover; flex-shrink:0;">
+              <div style="font-style:italic; font-size:14px; line-height:1.65; color:#4a4738;">a day at zac's. mandy and minh were there. it turned into one of those long, good days.</div>
+            </div>
+            <div style="position:absolute; right:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">11</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#7d2f1c;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#7d2f1c;">
+            <img src="uploads/d54d7aae-371b-417d-bda7-99d760a1f956.jpeg" alt="dinner shared at a dark table" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.2) brightness(0.95);">
+            <div style="position:absolute; inset:0; background:#a8412a; mix-blend-mode:multiply;"></div>
+            <div style="position:absolute; inset:0; background:linear-gradient(160deg, rgba(60,20,10,0.1), rgba(60,20,10,0.5));"></div>
+            <div style="position:absolute; right:8%; top:8%; font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:clamp(70px,13vw,130px); line-height:1; color:rgba(242,234,217,0.14);">12</div>
+            <div style="position:absolute; left:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#f0cdb6;">12</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#5c2115; padding:11vh 12% 8vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.28em; text-transform:uppercase; color:#f2c9a8;">v — one more, not last</div>
+            <blockquote style="margin:26px 0 0; font-weight:200; font-style:italic; font-size:20px; line-height:1.3; color:#fbf3e6; text-wrap:pretty;">if i could have done it all again, i would have <em class="hl">loved you better</em>. but i could not have loved you <em class="hl">more</em>.</blockquote>
+            <div style="margin-top:18px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.1em; color:#f0cdb6;">( sue zhao )</div>
+            <div style="margin-top:auto; font-size:13px; line-height:1.75; color:#f4dccc;">zac talked about his breakup over dinner. i won't put that here. but it sat with me, next to the other loss.</div>
+            <div style="position:absolute; right:12%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#f0cdb6;">13</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#3a4630;">
+        <div class="spread-row" style="position:relative;">
+          <div style="position:absolute; inset:0; width:calc(min(64vh,660px) * 2 + 3px); pointer-events:none;">
+            <image-slot id="v01-floral" shape="rect" fit="cover" placeholder="blurred floral, grainy — drop image" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot>
+            <div style="position:absolute; inset:0; background:linear-gradient(0deg, rgba(20,20,12,0.55), transparent 45%);"></div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:transparent;">
+            <div style="position:absolute; left:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#c3cdac;">14</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:transparent;">
+            <div style="position:absolute; right:6%; bottom:9%; font-style:italic; font-size:16px; color:#eae4d1; text-shadow:0 2px 12px rgba(0,0,0,0.5); max-width:70%; text-align:right;">blur is what memory actually looks like.</div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#c3cdac;">15</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#c9c0a8;">
+        <div class="spread-row">
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">vi — on repeat</div>
+            <div style="margin-top:3vh; display:flex; flex-direction:column;">
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">01</div><div style="flex:1; font-size:16px; color:#1c1a14;">House Song</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">searows</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">02</div><div style="flex:1; font-size:16px; color:#1c1a14;">BELLY</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">sailorr</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">03</div><div style="flex:1; font-size:16px; color:#1c1a14;">DIRT ON MY SHOES</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">leon thomas, kehlani</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">04</div><div style="flex:1; font-size:16px; color:#1c1a14;">i'm worried it will always be you</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">katie gregson-macleod</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">05</div><div style="flex:1; font-size:16px; color:#1c1a14;">lasso the moon</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">liv romano</div></div>
+            </div>
+            <div style="margin-top:auto; font-style:italic; font-size:14px; color:#6d6a58;">what the month sounded like</div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">16</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="visibility:hidden; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em;">continued</div>
+            <div style="margin-top:3vh; display:flex; flex-direction:column;">
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">06</div><div style="flex:1; font-size:16px; color:#1c1a14;">Tell Me</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">khamari</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">07</div><div style="flex:1; font-size:16px; color:#1c1a14;">run for the hills</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">tate mcrae</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">08</div><div style="flex:1; font-size:16px; color:#1c1a14;">Backsound Puisi</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">audiolist productions</div></div>
+              <div style="display:flex; align-items:baseline; gap:12px; padding:9px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">09</div><div style="flex:1; font-size:16px; color:#1c1a14;">End of August</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#6d6a58;">noah kahan</div></div>
+            </div>
+            <div style="margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a8412a;">( listen — spotify )</div>
+            <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">17</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="snap-sec" style="background:#241a10;">
+        <div class="spread-row" style="position:relative;">
+          <div style="position:absolute; inset:0; width:calc(min(64vh,660px) * 2 + 3px); pointer-events:none;">
+            <img src="uploads/5231b3d9-aba7-4fc0-bafc-3e8ccd8ca708.jpeg" alt="orange sunset over the skyline" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:saturate(0.95) contrast(1.02) brightness(0.85);">
+            <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(20,14,8,0.15), rgba(20,14,8,0.55) 90%);"></div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:transparent; padding:9vh 9% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div style="margin-top:auto; max-width:10ch; font-weight:200; font-size:clamp(26px,4.2vw,40px); line-height:1.1; color:#f6ecdb;">so: <span style="font-style:italic; color:#e2874a;">one more time.</span></div>
+            <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
+              <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#e2a06a;">( một lần nữa )</div>
+            </sc-if>
+            <div style="position:absolute; left:9%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">18</div>
+          </div>
+          <div class="pg" style="width:min(64vh,660px); background:transparent; padding:9vh 8% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
+            <div onClick="{{ goVol011 }}" style="margin-top:auto; cursor:pointer; display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#f2ead9;" style-hover="color:#e2874a;">
+              <span style="color:#e2874a;">→</span> ( next — vol 1 . 1 )
+            </div>
+            <div style="position:absolute; right:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">19</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isVol011 }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative; z-index:1; min-height:100vh; box-sizing:border-box; padding:18vh 0 10vh;">
+      <div style="padding:0 7vw;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.32em; text-transform:uppercase; color:#8a8776;">aside to vol 01 · a mini zine, one fold</div>
+        <h1 style="margin:20px 0 0; font-weight:200; font-size:clamp(34px,5.4vw,66px); line-height:1.0;">
+          <span style="color:#a8412a;">(</span> <span style="font-style:italic;">a friend moving</span> <span style="color:#a8412a;">)</span>
+        </h1>
+        <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#6d6a58;">( vol 01.1 ) · ( july 2026 ) · ( four panels )</div>
+      </div>
+
+      <div style="margin-top:7vh; padding:0 7vw 2vh; overflow-x:auto;">
+        <div style="display:flex; align-items:stretch; width:max-content; box-shadow:0 24px 60px rgba(34,31,25,0.16);">
+          <div style="width:270px; min-height:430px; box-sizing:border-box; padding:26px 24px; background:#e2dac8; display:flex; flex-direction:column; border-right:1px dashed rgba(34,31,25,0.28);">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:#8a8776;">panel i</div>
+            <div style="margin-top:auto; font-weight:200; font-style:italic; font-size:34px; line-height:1.1; color:#1c1a14;">a friend moving</div>
+            <div style="margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; color:#8a8776;">vol 01.1</div>
+          </div>
+          <div style="width:270px; min-height:430px; background:#cfc6ac; border-right:1px dashed rgba(34,31,25,0.28); position:relative;">
+            <image-slot id="v011-panel2" shape="rect" fit="cover" placeholder="panel ii — a photo"></image-slot>
+          </div>
+          <div style="width:270px; min-height:430px; background:#171310; border-right:1px dashed rgba(238,231,216,0.2); position:relative; display:flex; align-items:center; justify-content:center; padding:20px; box-sizing:border-box;">
+            <div style="background:rgba(238,231,216,0.9); box-shadow:0 16px 34px rgba(0,0,0,0.4); transform:rotate(-1.4deg); padding:26px 22px; box-sizing:border-box;">
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.24em; text-transform:uppercase; color:#8a8776;">panel iii</div>
+              <p style="margin:16px 0 0; font-size:17px; line-height:1.75; color:#1c1a14; text-wrap:pretty;">a smaller leaving. different state, not a different life. still, the group is one person lighter for a while and you notice it in the room.</p>
+            </div>
+          </div>
+          <div style="width:270px; min-height:430px; box-sizing:border-box; padding:26px 24px; background:#a8412a; color:#f2ead9; display:flex; flex-direction:column;">
+            <div style="font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:#f0cdb6;">panel iv</div>
+            <div style="margin-top:auto; font-style:italic; font-size:24px; line-height:1.4;">see you at the airport, then.</div>
+            <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; color:#f0cdb6;">jul 2026</div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:2vh 7vw 0; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:#a19d89;">( scroll sideways — the fold opens )</div>
+
+      <div style="padding:10vh 7vw 0; display:flex; justify-content:space-between; align-items:baseline;">
+        <div onClick="{{ goVol01 }}" style="cursor:pointer; font-family:'IBM Plex Mono',monospace; font-size:12px; color:#1c1a14;">← ( back to vol 01 )</div>
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.24em; color:#b0ac97;">01.1</div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative; z-index:1; min-height:100vh; box-sizing:border-box; padding:24vh 7vw 10vh; display:flex; flex-direction:column;">
+      <h1 style="margin:0; font-weight:200; font-size:clamp(34px,5vw,62px); line-height:1.05;">
+        <span style="color:#a8412a;">(</span> <span style="font-style:italic;">about</span> <span style="color:#a8412a;">)</span>
+      </h1>
+      <div style="margin-top:6vh; margin-left:auto; margin-right:6vw; max-width:44ch; font-size:20px; line-height:1.85; color:#4a4738; text-wrap:pretty;">
+        <p style="margin:0;">a personal zine, kept irregularly. each volume is a dated record of a stretch of life — photographs, borrowed lines, and whatever i was thinking about at the time.</p>
+        <p style="margin:28px 0 0;">some volumes are built around a large thing. some are built around a good day. smaller entries hang off a volume as an aside, numbered 01.1, 01.2, and so on.</p>
+        <p style="margin:28px 0 0;">nothing here is trying to be finished.</p>
+      </div>
+      <div style="margin-top:auto; padding-top:10vh; display:flex; justify-content:space-between; align-items:baseline; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#b0ac97;">
+        <div onClick="{{ goArchive }}" style="cursor:pointer; color:#6d6a58;">← ( archive )</div>
+        <div>( built in astro )</div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;grain&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:0.35,&quot;min&quot;:0,&quot;max&quot;:1,&quot;step&quot;:0.02,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;atmosphere&quot;},&quot;doodles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;atmosphere&quot;},&quot;bilingual&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;content&quot;}}">
+class Component extends DCLogic {
+  state = { page: 'archive' };
+  go(p) {
+    this.setState({ page: p }, () => window.scrollTo(0, 0));
+  }
+  renderVals() {
+    const p = this.state.page;
+    const labels = {
+      archive: '( index )',
+      vol01: '( vol 01 — one more time )',
+      vol011: '( vol 01.1 — a friend moving )',
+      about: '( about )'
+    };
+    return {
+      isArchive: p === 'archive',
+      isVol01: p === 'vol01',
+      isVol011: p === 'vol011',
+      isAbout: p === 'about',
+      here: labels[p],
+      bilingual: this.props.bilingual ?? true,
+      doodles: this.props.doodles ?? true,
+      grainOpacity: String(this.props.grain ?? 0.35),
+      goArchive: () => this.go('archive'),
+      goVol01: () => this.go('vol01'),
+      goVol011: () => this.go('vol011'),
+      goAbout: () => this.go('about')
+    };
+  }
+}
+</script>
+</body>
+</html>
