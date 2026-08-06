@@ -34,6 +34,23 @@ em.hl { font-style:italic; color:#c98a4a; }
 .snap-sec { scroll-snap-align:center; min-height:100vh; display:flex; align-items:center; justify-content:center; box-sizing:border-box; padding:5vh 0; }
 .spread-row { display:flex; align-items:stretch; gap:3px; }
 .pg { aspect-ratio:3/4; height:min(84vh,860px); box-sizing:border-box; position:relative; overflow:hidden; }
+/* Spot foil: the one place in the volume that gets a metallic hit,
+   with a sheen that drifts on its own and tracks the pointer when one
+   is present. Everything else on the leaf stays quiet to pay for it. */
+.foil{
+  background-image:linear-gradient(101deg,
+    #8a3520 0%, #b8552f 16%, #e0a05c 30%, #f7dfae 40%, #ffffff 46%,
+    #f7dfae 52%, #d98f4d 64%, #a8412a 80%, #7d2f1c 100%);
+  background-size:340% 100%; background-position:8% 50%;
+  -webkit-background-clip:text; background-clip:text;
+  color:transparent; -webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,0.55));
+  animation:foil-sheen 7s ease-in-out infinite;
+}
+@keyframes foil-sheen{ 0%,100%{ background-position:8% 50%; } 50%{ background-position:92% 50%; } }
+@media (prefers-reduced-motion: reduce){
+  .foil{ animation:none; background-position:50% 50%; }
+}
 /* Cotton-stock paper: fine fiber grain + slow warm mottling + edge vignette.
    Layered as backgrounds (not pseudo-elements) so it always paints beneath
    page content, whatever each page stacks on top. */
@@ -46,6 +63,23 @@ em.hl { font-style:italic; color:#c98a4a; }
   background-repeat: no-repeat, repeat, repeat;
   background-blend-mode: normal, overlay, multiply;
   box-shadow: inset 0 0 0 1px rgba(60,44,22,0.05), inset 0 1px 3px rgba(60,44,22,0.06);
+}
+/* Bleed-through: a whisper of the facing plate showing through the stock,
+   as if it were printed on the other side. Used sparingly (twice, by
+   design) — set --bleed-img and --bleed-pos per page. A near-opaque scrim
+   of the page's own paper color sits over the photo so only ~5% of it
+   shows, layered before the grain so it never competes with the text. */
+.pg.paper.bleed {
+  background-image:
+    linear-gradient(var(--bleed-scrim,#eee7d8), var(--bleed-scrim,#eee7d8)),
+    var(--bleed-img),
+    radial-gradient(120% 100% at 50% 42%, rgba(60,44,22,0) 55%, rgba(60,44,22,0.10) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='pmb'><feTurbulence type='turbulence' baseFrequency='0.012 0.05' numOctaves='3' seed='24' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.62  0 0 0 0 0.5  0 0 0 0 0.32  0 0 0 0.5 0'/></filter><rect width='260' height='260' filter='url(%23pmb)' opacity='0.22'/></svg>"),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='pgb'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' seed='31' stitchTiles='stitch'/><feColorMatrix type='matrix' values='0 0 0 0 0.1  0 0 0 0 0.08  0 0 0 0 0.05  0 0 0 0.55 0'/></filter><rect width='220' height='220' filter='url(%23pgb)' opacity='0.14'/></svg>");
+  background-size: cover, cover, cover, 260px 260px, 220px 220px;
+  background-position: center, var(--bleed-pos,center), center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, repeat, repeat;
+  background-blend-mode: normal, normal, normal, overlay, multiply;
 }
 @media (max-width:899px) {
   .spread-row { display:flex; gap:0; overflow-x:auto; scroll-snap-type:x mandatory; width:100vw; }
@@ -159,7 +193,7 @@ em.hl { font-style:italic; color:#c98a4a; }
 
       <div class="snap-sec" style="background:#c9c0a8;">
         <div class="spread-row">
-          <div class="pg paper" style="width:min(64vh,660px); background-color:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+          <div class="pg paper bleed" style="width:min(64vh,660px); background-color:#eee7d8; --bleed-img:url('uploads/67981aed-33cf-4f3b-a95d-82b32be61b1f.jpeg'); --bleed-pos:60% 35%; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">ii — the undertone</div>
             <blockquote style="margin:20px 0 0; font-weight:200; font-size:clamp(20px,2.6vw,30px); line-height:1.32; letter-spacing:-0.01em; color:#1c1a14; text-wrap:pretty;">have enough courage to trust love <em class="hl">one more time</em> and always one more time.</blockquote>
             <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#6d6a58;">( maya angelou )</div>
@@ -251,7 +285,7 @@ em.hl { font-style:italic; color:#c98a4a; }
 
       <div class="snap-sec" style="background:#c9c0a8;">
         <div class="spread-row">
-          <div class="pg paper" style="width:min(64vh,660px); background-color:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
+          <div class="pg paper bleed" style="width:min(64vh,660px); background-color:#eee7d8; --bleed-img:url('uploads/5231b3d9-aba7-4fc0-bafc-3e8ccd8ca708.jpeg'); --bleed-pos:70% 60%; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">iv — specimens from one day</div>
             <div style="position:relative; flex:1; margin-top:3vh;">
               <div style="position:absolute; width:100%; height:60%; left:0; top:0; opacity:0.55; clip-path:polygon(0% 70%, 8% 60%, 8% 45%, 18% 45%, 18% 55%, 30% 55%, 30% 40%, 42% 40%, 42% 58%, 55% 58%, 55% 42%, 68% 42%, 68% 60%, 82% 60%, 82% 48%, 100% 48%, 100% 100%, 0% 100%); background-image:url('uploads/4a97b4d2-078a-4ceb-a29c-904b8aed2d0d.jpeg'); background-size:230% auto; background-position:30% 55%; filter:brightness(1.1) saturate(0.7);"></div>
@@ -325,11 +359,11 @@ em.hl { font-style:italic; color:#c98a4a; }
           <div class="pg paper" style="width:min(64vh,660px); background-color:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
             <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:#8a8776;">vi — on repeat</div>
             <div style="margin-top:3vh; display:flex; flex-direction:column;">
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">01</div><div style="font-size:16px; color:#1c1a14;">House Song</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">searows</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">02</div><div style="font-size:16px; color:#1c1a14;">BELLY</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">sailorr</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">03</div><div style="font-size:16px; color:#1c1a14;">DIRT ON MY SHOES</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">leon thomas, kehlani</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">04</div><div style="font-size:16px; color:#1c1a14;">i'm worried it will always be you</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">katie gregson-macleod</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">05</div><div style="font-size:16px; color:#1c1a14;">lasso the moon</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">liv romano</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">01</div><div style="font-size:16px; color:#1c1a14; flex:1;">House Song</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:41</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">searows</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">02</div><div style="font-size:16px; color:#1c1a14; flex:1;">BELLY</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">2:58</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">sailorr</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">03</div><div style="font-size:16px; color:#1c1a14; flex:1;">DIRT ON MY SHOES</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:12</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">leon thomas, kehlani</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">04</div><div style="font-size:16px; color:#1c1a14; flex:1;">i'm worried it will always be you</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">4:07</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">katie gregson-macleod</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">05</div><div style="font-size:16px; color:#1c1a14; flex:1;">lasso the moon</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:26</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">liv romano</div></div>
             </div>
             <div style="margin-top:auto; font-style:italic; font-size:14px; color:#6d6a58;">what the month sounded like</div>
             <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">16</div>
@@ -337,10 +371,10 @@ em.hl { font-style:italic; color:#c98a4a; }
           <div class="pg paper" style="width:min(64vh,660px); background-color:#eee7d8; padding:8vh 6% 5vh; box-sizing:border-box; display:flex; flex-direction:column;">
             <div style="visibility:hidden; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.3em;">continued</div>
             <div style="margin-top:3vh; display:flex; flex-direction:column;">
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">06</div><div style="font-size:16px; color:#1c1a14;">Tell Me</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">khamari</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">07</div><div style="font-size:16px; color:#1c1a14;">run for the hills</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">tate mcrae</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">08</div><div style="font-size:16px; color:#1c1a14;">Backsound Puisi</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">audiolist productions</div></div>
-              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">09</div><div style="font-size:16px; color:#1c1a14;">End of August</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">noah kahan</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">06</div><div style="font-size:16px; color:#1c1a14; flex:1;">Tell Me</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:33</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">khamari</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">07</div><div style="font-size:16px; color:#1c1a14; flex:1;">run for the hills</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:15</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">tate mcrae</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">08</div><div style="font-size:16px; color:#1c1a14; flex:1;">Backsound Puisi</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">2:47</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">audiolist productions</div></div>
+              <div style="padding:11px 0; border-top:1px solid rgba(34,31,25,0.14); border-bottom:1px solid rgba(34,31,25,0.14);"><div style="display:flex; align-items:baseline; gap:12px;"><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#b0ac97; width:20px;">09</div><div style="font-size:16px; color:#1c1a14; flex:1;">End of August</div><div style="font-family:'IBM Plex Mono',monospace; font-size:10px; color:#8a8776; font-variant-numeric:tabular-nums;">3:52</div></div><div style="margin-top:3px; margin-left:32px; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:0.06em; text-transform:uppercase; color:#6d6a58;">noah kahan</div></div>
             </div>
             <div style="margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#a8412a;">( listen — spotify )</div>
             <div style="position:absolute; right:6%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#8a8776;">17</div>
@@ -355,14 +389,21 @@ em.hl { font-style:italic; color:#c98a4a; }
             <div style="position:absolute; inset:0; background:linear-gradient(100deg, rgba(20,14,8,0.15), rgba(20,14,8,0.55) 90%);"></div>
           </div>
           <div class="pg" style="width:min(64vh,660px); background:transparent; padding:9vh 9% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
-            <div style="margin-top:0; max-width:10ch; font-weight:200; font-size:clamp(26px,4.2vw,40px); line-height:1.1; color:#ffffff; text-shadow:0 2px 14px rgba(0,0,0,0.65), 0 0 30px rgba(0,0,0,0.4);">so: <span style="font-style:italic; color:#ffe0b0; text-shadow:0 2px 14px rgba(0,0,0,0.65), 0 0 30px rgba(0,0,0,0.4);">one more time.</span></div>
+            <div style="margin-top:0; max-width:10ch; font-weight:200; font-size:clamp(26px,4.2vw,40px); line-height:1.1; color:#ffffff; text-shadow:0 2px 14px rgba(0,0,0,0.65), 0 0 30px rgba(0,0,0,0.4);">so: <span class="foil" style="font-style:italic;">one more time.</span></div>
             <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
               <div style="margin-top:16px; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#e2a06a;">( một lần nữa )</div>
             </sc-if>
             <div style="position:absolute; left:9%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">18</div>
           </div>
           <div class="pg" style="width:min(64vh,660px); background:transparent; padding:9vh 8% 6vh; box-sizing:border-box; display:flex; flex-direction:column;">
-            <div onClick="{{ goVol011 }}" style="margin-top:auto; cursor:pointer; display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#f2ead9;" style-hover="color:#e2874a;">
+            <div style="margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:9px; line-height:2.1; letter-spacing:0.1em; text-transform:uppercase; color:#cabfa9;">
+              set in newsreader &amp; ibm plex mono<br>
+              printed on cotton stock, deckle edge<br>
+              made in san francisco · august 2026
+              <div style="margin:12px 0; width:26px; height:1px; background:rgba(242,234,217,0.3);"></div>
+              <div style="font-family:'Newsreader',Georgia,serif; font-style:italic; font-size:13px; letter-spacing:0; text-transform:none; color:#e2a06a; line-height:1.5;">vol 01 of a living record.<br>edition of one.</div>
+            </div>
+            <div onClick="{{ goVol011 }}" style="margin-top:20px; cursor:pointer; display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:11px; color:#f2ead9;" style-hover="color:#e2874a;">
               <span style="color:#e2874a;">→</span> ( next — vol 01a )
             </div>
             <div style="position:absolute; right:8%; bottom:5%; font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:0.2em; color:#cabfa9;">19</div>
