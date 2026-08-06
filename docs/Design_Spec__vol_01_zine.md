@@ -66,19 +66,20 @@ One quiet Vietnamese line under an English poem/quote — occasional, never full
   - `<Folio>` — absolutely-positioned page number, always rendered last so it can't be pushed off
   - Minor asides (`vol 01a` mini fold-out) stay a distinct component/format — deliberately not spreads, for contrast.
 
-## Screen map — vol 01 ("one more time"), 19 pages
+## Screen map — vol 01 ("one more time"), 21 pages
 | pages | content |
 |---|---|
 | 01 | cover — lamp-glow cutout + hand-drawn smoke lines + flower linework |
 | 02–03 | the shrine — full-bleed photo / vellum-panel text |
 | 04–05 | the undertone — Maya Angelou quote / separated photo + reflection |
-| 06–07 | the day, logged — 4-tile day-log grid / workstation photo (editorial inset) |
-| 08–09 | some nights — glass/glow quote over blurred incense / sharp incense photo, separated |
-| 10–11 | specimens from one day — skyline cutout + doodle / stacked photos + caption |
-| 12–13 | one more, not last — duotone dinner photo (Sue Zhao quote on facing page, not behind it) |
-| 14–15 | floral breathing spread — full bleed, one quiet caption line |
-| 16–17 | on repeat — playlist, split across both pages |
-| 18–19 | closing — sunset photo with "so: one more time" + Vietnamese aside / next-volume link |
+| 06–07 | the bear — glass-panel quote over show poster / two scenes (dinner-table photo + forks-episode strip) |
+| 08–09 | the day, logged — 4-tile day-log grid / workstation photo (editorial inset) |
+| 10–11 | some nights — glass/glow quote over blurred incense / sharp incense photo, separated |
+| 12–13 | specimens from one day — skyline cutout + doodle / stacked photos + caption |
+| 14–15 | one more, not last — duotone dinner photo (Sue Zhao quote on facing page, not behind it) |
+| 16–17 | floral breathing spread — full bleed, one quiet caption line |
+| 18–19 | on repeat — playlist, split across both pages |
+| 20–21 | closing — sunset photo with "so: one more time" + Vietnamese aside / next-volume link |
 
 ## What NOT to do
 - No stitching/sticker/craft-kit decoration — mood comes from blur, glow, warmth, and paper translucency only.
