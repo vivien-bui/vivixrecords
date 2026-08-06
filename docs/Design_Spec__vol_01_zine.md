@@ -12,7 +12,7 @@ Two families only:
 
 Type scale (keep tight — this is the biggest lever for "editorial" feel):
 - Eyebrow/section label: 11px mono, 0.3em tracking, uppercase
-- Folio (page number): 11px mono, 0.2em tracking — always `position:absolute`, pinned to a fixed page corner, never in flow (must survive any copy length)
+- Folio (page number): 9px mono, 0.2em tracking, parenthesised — see **Folio system** below
 - Caption/small aside: 13–14px, italic serif or mono depending on context
 - Body copy: 14–16px serif, line-height 1.6–1.8
 - Display quote: 20–34px serif italic 200-weight, line-height ~1.25 (scale down on tighter/two-page layouts vs single-page moments)
@@ -42,6 +42,23 @@ Max two background modes per spread: paper (cream/tan) or dark (espresso/rust/mo
 - Each `.pg` is a fixed 3:4 box — design each page to fit that box; never let copy or images overflow it (folios are the thing most likely to get pushed off — always `position:absolute`).
 - Mobile (`max-width:899px`): `.spread-row` becomes a horizontal scroll-snap container so the two pages of a spread become swipeable single screens.
 - A full-bleed image can "bleed across the gutter" (span both pages of a spread) by absolutely positioning it behind both `.pg` boxes at `width: calc(page-width * 2 + gap)` — used sparingly, for high-impact moments only (one photo, one message).
+
+## Folio system
+One rule for the whole volume — folios are the element most likely to drift, so nothing about them is decided per-page except ink color.
+
+```css
+.folio       { position:absolute; bottom:5%; font-family:'IBM Plex Mono',monospace;
+               font-weight:400; font-size:9px; letter-spacing:0.2em; }
+.folio.verso { left:6%; }    /* even pages, left-hand  */
+.folio.recto { right:6%; }   /* odd pages, right-hand  */
+```
+
+- **Parenthesised**, in the house style: `( 07 )`, zero-padded to two digits.
+- **Always on the outer edge** — versos flush left, rectos flush right, the way numbers fall in print. The cover is page 01, so it's a recto and sits right. Never place a folio on the gutter side.
+- **Always `position:absolute`**, never in flow, so no length of copy can push it off the leaf.
+- **Only the color varies**, set inline, because pages run either paper or dark. Pick the page's quietest legible tone — a warm gray on paper, a tan on dark.
+- **Pages whose content flows to the bottom must reserve the folio band.** The folio occupies roughly the lowest 5–7% of the leaf; give such pages `padding-bottom:8vh` so the last line clears it. Where both leaves of a spread end on a bottom-anchored line, lift both equally so the baselines stay level across the gutter.
+- The one exception is the **ghost folio** on the duotone spread — a huge low-opacity numeral that is a graphic element, not a folio. It stays a bare number; the real folio still sits in its corner.
 
 ## Recurring page devices (mix across an issue — never repeat the same device twice in a row)
 1. **Organic photo cutouts** — `clip-path: polygon(...)`, hard graphic edges (no soft/blurred masks). The shape must reference actual photo content: a lamp becomes a circle, a skyline becomes a stepped "building" polygon, incense smoke becomes a winding ribbon. Crop via `background-image` + `background-size`/`background-position` on the clipped div (not `<img>` + mask) so you can zoom into the right region of the source photo.
