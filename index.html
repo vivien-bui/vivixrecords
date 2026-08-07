@@ -94,6 +94,11 @@ em.hl { font-style:italic; color:#c98a4a; }
   .spread-row { display:flex; gap:0; overflow-x:auto; scroll-snap-type:x mandatory; width:100vw; }
   .pg { flex:0 0 100vw; height:88vh; aspect-ratio:auto; scroll-snap-align:start; }
 }
+.hdr-short { display:none; }
+@media (max-width:640px) {
+  .hdr-full { display:none; }
+  .hdr-short { display:inline; }
+}
 </style>
 </helmet>
 
@@ -106,7 +111,7 @@ em.hl { font-style:italic; color:#c98a4a; }
       <div onClick="{{ goArchive }}" style="cursor:pointer; color:#221f19;">( archive )</div>
       <div onClick="{{ goAbout }}" style="cursor:pointer; color:#7a7768;">( about )</div>
     </div>
-    <div style="color:#a8412a; text-align:right;">{{ here }}</div>
+    <div style="color:#a8412a; text-align:right;"><span class="hdr-full">{{ here }}</span><span class="hdr-short">{{ hereShort }}</span></div>
   </div>
 
   <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ true }}">
@@ -191,7 +196,7 @@ em.hl { font-style:italic; color:#c98a4a; }
             <div class="folio verso" style="color:#cabfa9;">02</div>
           </div>
           <div class="pg paper" style="width:min(64vh,660px); background-color:#eee7d8; padding:12vh 11% 10vh; box-sizing:border-box; display:flex; flex-direction:column; overflow:hidden;">
-            <p style="margin:0; font-size:clamp(11px,1.75vh,15px); line-height:1.75; color:#1c1a14; text-wrap:pretty;">i lost my cat two months ago and it still weighs on me. i made him a little shrine, and it helped. it made me feel connected to him in a way that was lost when he passed. May we meet again, Peanut.</p>
+            <p style="margin:0; font-size:clamp(11px,1.75vh,15px); line-height:1.75; color:#1c1a14; text-wrap:pretty;">i lost my cat two months ago and it still weighs on me. i made him a little shrine, and it helped. it made me feel connected to him in a way that was lost when he passed. may we meet again, Peanut.</p>
             <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
               <div style="margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.3vh,11px); letter-spacing:0.16em; color:#a8412a;">( thương nhớ )</div>
             </sc-if>
@@ -449,7 +454,7 @@ em.hl { font-style:italic; color:#c98a4a; }
             <div style="margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.2vh,9px); line-height:2.1; letter-spacing:0.1em; text-transform:uppercase; color:#cabfa9;">
               set in newsreader &amp; ibm plex mono<br>
               printed on cotton stock, deckle edge<br>
-              made in san francisco · august 2026
+              made in sydney · august 2026
               <div style="margin:12px 0; width:26px; height:1px; background:rgba(242,234,217,0.3);"></div>
               <div style="font-family:'Newsreader',Georgia,serif; font-style:italic; font-size:clamp(10px,1.55vh,13px); letter-spacing:0; text-transform:none; color:#e2a06a; line-height:1.5;">vol 01 of a living record.<br>edition of one.</div>
             </div>
@@ -637,12 +642,19 @@ class Component extends DCLogic {
       vol011: '( vol 01a — a friend moving )',
       about: '( about )'
     };
+    const labelsShort = {
+      archive: '( index )',
+      vol01: '( vol 01 )',
+      vol011: '( vol 01a )',
+      about: '( about )'
+    };
     return {
       isArchive: p === 'archive',
       isVol01: p === 'vol01',
       isVol011: p === 'vol011',
       isAbout: p === 'about',
       here: labels[p],
+      hereShort: labelsShort[p],
       bilingual: this.props.bilingual ?? true,
       doodles: this.props.doodles ?? true,
       grainOpacity: String(this.props.grain ?? 0.35),
