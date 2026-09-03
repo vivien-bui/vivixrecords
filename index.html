@@ -53,6 +53,11 @@ em.hl { font-style:italic; color:#c98a4a; }
 .sk { position:absolute; pointer-events:none; clip-path:polygon(50% 0%,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0% 50%,43% 43%); animation:sk-tw 3.6s ease-in-out infinite; }
 @keyframes sk-tw { 0%,100% { opacity:0.14; transform:scale(0.65) rotate(0deg); } 50% { opacity:0.92; transform:scale(1.15) rotate(18deg); } }
 @media (prefers-reduced-motion: reduce) { .sk { animation:none; opacity:0.5; } }
+/* The girls-on-the-steps crop (vol 02, p.3) is tuned for the desktop
+   spread's box aspect. On the mobile single-page layout the box is much
+   taller relative to its width, so the same object-position would push
+   the crop off past the third girl — recentre it there instead. */
+@media (max-width:899px) { .img-girls3 { object-position:31% 42% !important; } }
 /* Spot foil: the one place in the volume that gets a metallic hit,
    with a sheen that drifts on its own and tracks the pointer when one
    is present. Everything else on the leaf stays quiet to pay for it. */
@@ -651,9 +656,9 @@ em.hl { font-style:italic; color:#c98a4a; }
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:relative; margin:10px 9.23% 0; height:43.29vh;">
-              <div style="position:absolute; left:10px; top:10px; right:-10px; bottom:-10px; background:#f7c2d5; opacity:0.8;"></div>
+              <div style="position:absolute; left:16px; top:16px; right:-16px; bottom:-16px; background:#f7c2d5; opacity:0.8;"></div>
               <div style="position:absolute; inset:0; overflow:hidden;">
-                <img src="uploads/4c855a40-00a0-4f91-89ee-5ee713e2dffa.jpg" alt="three small girls on the back steps" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%; filter:saturate(0.62) contrast(0.92) brightness(1.08);">
+                <img class="img-girls3" src="uploads/4c855a40-00a0-4f91-89ee-5ee713e2dffa.jpg" alt="three small girls on the back steps" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:8% 42%; filter:saturate(0.62) contrast(0.92) brightness(1.08);">
                 <div style="position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 45%, rgba(255,248,250,0) 45%, rgba(255,224,234,0.55) 100%);"></div>
                 <div style="position:absolute; inset:0; background:#f7c2d5; mix-blend-mode:multiply; opacity:0.26;"></div>
               </div>
@@ -690,8 +695,10 @@ em.hl { font-style:italic; color:#c98a4a; }
             <div style="position:absolute; left:6.54%; top:8.66%; bottom:21.65%; display:flex; align-items:flex-start;">
               <div style="writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">II — THE SET UP</div>
             </div>
-            <div style="position:absolute; left:14.23%; top:11.98%; width:40.96%; text-align:left; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#5c2c40; text-wrap:pretty;">ribbons on a string, pink and lovely.</div>
-            <div style="position:absolute; left:13.85%; top:22.94%; width:46.54%; text-align:left; font-size:clamp(10px,1.63vh,14px); line-height:1.7; color:rgb(120,36,63); text-wrap:pretty;">bows on pillows, hanging on ceilings, and pink balloons to add some magic.</div>
+            <div style="position:absolute; left:13.85%; top:11.98%; width:46.54%;">
+              <div style="font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#5c2c40; text-wrap:pretty;">ribbons on a string, pink and lovely.</div>
+              <div style="margin-top:16px; font-size:clamp(10px,1.63vh,14px); line-height:1.7; color:rgb(120,36,63); text-wrap:pretty;">bows on pillows, hanging on ceilings, and pink balloons to add some magic.</div>
+            </div>
             <div class="folio recto">( 05 )</div>
           </div>
         </div>
@@ -749,7 +756,7 @@ em.hl { font-style:italic; color:#c98a4a; }
 
       <div class="snap-sec" style="background:#efe9e5;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:9.24vh 10.38% 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:9.24vh 6.5% 10.39vh; display:flex; flex-direction:column;">
             <img src="uploads/pasted-1788276554262-0.png" alt="petals, blurred" style="position:absolute; inset:0; width:100.58%; height:100.29%; object-fit:cover; object-position:50% 50%; opacity:0.55;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
@@ -778,8 +785,8 @@ em.hl { font-style:italic; color:#c98a4a; }
             </div>
             <div style="position:absolute; left:9.23%; right:9.23%; top:72.15%;">
               <div style="font-style:italic; font-weight:200; font-size:clamp(20px,3.72vh,32px); line-height:1.2; color:#78243f; text-wrap:pretty;">our version of fun, <br>10 years later&nbsp;</div>
-              <div style="margin-top:18px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">NIGHT ONE · AFTER DINNER</div>
             </div>
+            <div style="position:absolute; left:9.23%; right:9.23%; bottom:9%; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">NIGHT ONE · AFTER DINNER</div>
             <div class="folio recto">( 11 )</div>
           </div>
         </div>
@@ -813,7 +820,7 @@ em.hl { font-style:italic; color:#c98a4a; }
             </sc-for>
             <div style="position:absolute; left:6.54%; top:9.24%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">v — in between</div>
             <div style="position:absolute; left:8.46%; top:24.82%; width:23.08%; height:10.97%;"></div>
-            <div style="position:absolute; left:19.42%; top:8.08%; font-style:italic; font-weight:200; font-size:clamp(21px,3.95vh,34px); line-height:1.24; color:#5c2c40; text-wrap:pretty; width:70.38%; text-align:right;">capturing the small moments too</div>
+            <div style="position:absolute; left:19.42%; top:8.08%; font-style:italic; font-weight:200; font-size:clamp(27px,5.12vh,44px); line-height:1.16; color:#5c2c40; text-wrap:pretty; width:70.38%; text-align:right;">capturing the small moments too</div>
             <div style="position:absolute; left:12.5%; top:37.23%; width:75%; height:38.96%; overflow:hidden;">
               <img src="uploads/0c2ea976-cedb-48c1-889f-6062e011c730.jpg" alt="four of us at the restaurant" style="width:100%; height:100%; object-fit:cover; object-position:50% 46%;">
             </div>
@@ -1152,9 +1159,9 @@ class Component extends DCLogic {
         weight: '400'
       })),
       plates: [
-        { label: 'the cake', size: '420px 560px', pos: '-15px -234px', tf: 'none' },
-        { label: 'Pretty in pink', size: '340px 453px', pos: '-156px -170px', tf: 'rotate(-5deg) scale(1.18)' },
-        { label: 'fruit & Food', size: '470px 626px', pos: '-134px -306px', tf: 'none' }
+        { label: 'the cake', size: '502px 669px', pos: '-11px -294px', tf: 'none' },
+        { label: 'Pretty in pink', size: '427px 570px', pos: '-211px -220px', tf: 'rotate(-5deg) scale(1.12)' },
+        { label: 'fruit & Food', size: '574px 765px', pos: '-187px -396px', tf: 'none' }
       ],
       menu: [
         { item: 'sprite', price: '50¢' },
