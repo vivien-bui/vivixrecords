@@ -46,8 +46,8 @@ em.hl { font-style:italic; color:#c98a4a; }
 /* Vol 02's own folio system: two-color, tied to leaf side (deep raspberry
    verso / plum ink recto). Every instance below still sets its own inline
    color where it sits on a photo, which always wins over this. */
-.folio.verso { color:#78243f; }
-.folio.recto { color:#5c2c40; }
+.folio.verso { color:#6f3a2c; }
+.folio.recto { color:#5c3a30; }
 /* Vol 02's twinkling sparkle — a small clipped diamond, staggered and
    looping, scattered across every leaf via the sk* prop arrays. */
 .sk { position:absolute; pointer-events:none; clip-path:polygon(50% 0%,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0% 50%,43% 43%); animation:sk-tw 3.6s ease-in-out infinite; }
@@ -610,82 +610,82 @@ em.hl { font-style:italic; color:#c98a4a; }
   </sc-if>
 
   <sc-if value="{{ isVol02 }}" hint-placeholder-val="{{ false }}">
-    <div class="snap-wrap" style="color:#5c2c40; font-weight:300;">
+    <div class="snap-wrap" style="color:#5c3a30; font-weight:300;">
 
-      <div class="snap-sec" style="background-color:#efe9e5;">
-        <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+      <div class="snap-sec" style="background-color:#f3ebe2;">
+        <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
           <img src="uploads/pasted-1788323199098-0.png" alt="soft flowers, blurred" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%;">
           <sc-for list="{{ skWhite }}" as="s" hint-placeholder-count="0">
             <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
           </sc-for>
-          <div style="position:absolute; left:8%; top:7%; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#ffffff;">vol 02 · aug 2026</div>
+          <div style="position:absolute; left:8%; top:7%; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#6f3a2c; text-shadow:0 1px 10px rgba(253,246,239,0.6);">vol 02 · aug 2026</div>
           <div style="position:absolute; left:8%; right:8%; bottom:12%;">
-            <h1 style="margin:0; font-weight:200; font-size:clamp(31px,7.21vh,62px); line-height:0.95; letter-spacing:-0.03em; color:#fff8fa; text-shadow:0 2px 24px rgba(120,36,63,0.28);">
-              <span style="color:#fff8fa;">(</span> <span style="font-style:italic;">we were girls<br>together</span> <span style="color:#fff8fa;">)</span>
+            <h1 style="margin:0; font-weight:200; font-size:clamp(31px,7.21vh,62px); line-height:0.95; letter-spacing:-0.03em; color:#fdf6f0; text-shadow:0 2px 24px rgba(92,58,44,0.28);">
+              <span style="color:#bb8871; text-shadow:0 1px 10px rgba(253,246,239,0.6);">(</span> <span style="font-style:italic;">we were girls<br>together</span> <span style="color:#bb8871; text-shadow:0 1px 10px rgba(253,246,239,0.6);">)</span>
             </h1>
-            <div style="margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#fff8fa; text-shadow:0 1px 14px rgba(120,36,63,0.3);">sandy's hens weekend — the bui clan, all of us</div>
+            <div style="margin-top:20px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#8a5642; text-shadow:0 1px 10px rgba(253,246,239,0.6);">sandy's hens weekend — the bui clan, all of us</div>
           </div>
-          <div class="folio recto" style="color:#ffffff;">( 01 )</div>
+          <div class="folio recto" style="color:#8a5642; text-shadow:0 1px 8px rgba(253,246,239,0.6);">( 01 )</div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:9.24vh 10.38% 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3; padding:9.24vh 10.38% 10.39vh; display:flex; flex-direction:column;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <img src="uploads/clan-doodle.png" alt="the eight of us holding hands, doodle" style="position:absolute; left:-14.04%; width:76.15%; height:57.14%; opacity:0.34; top:50.22%;">
-            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a8506a;">i — tám chị em</div>
-            <h2 style="position:relative; margin:18px 0 0; font-weight:200; font-style:italic; font-size:clamp(23px,4.88vh,42px); line-height:1.02; letter-spacing:-0.02em; color:#5c2c40;">the bui clan</h2>
-            <div style="position:relative; margin-top:14px; font-size:clamp(12px,1.86vh,16px); line-height:1.7; color:#78243f; max-width:30ch; text-wrap:pretty;">eight girls. sandy's the first to be married</div>
+            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a3705c;">i — tám chị em</div>
+            <h2 style="position:relative; margin:18px 0 0; font-weight:200; font-style:italic; font-size:clamp(23px,4.88vh,42px); line-height:1.02; letter-spacing:-0.02em; color:#5c3a30;">the bui clan</h2>
+            <div style="position:relative; margin-top:14px; font-size:clamp(12px,1.86vh,16px); line-height:1.7; color:#6f3a2c; max-width:30ch; text-wrap:pretty;">eight girls. sandy's the first to be married</div>
             <div style="position:relative; margin-top:30px; margin-left:18.46%; display:flex; flex-direction:column; gap:13px;">
               <sc-for list="{{ roster }}" as="r" hint-placeholder-count="8">
-                <div style="display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.28vh,11px); letter-spacing:0.18em; text-transform:uppercase; color:#5c2c40;">
-                  <span style="color:#d06f8b;">{{ r.n }}</span>
+                <div style="display:flex; align-items:baseline; gap:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.28vh,11px); letter-spacing:0.18em; text-transform:uppercase; color:#5c3a30;">
+                  <span style="color:#c98a78;">{{ r.n }}</span>
                   <span style="color:{{ r.col }}; font-weight:{{ r.weight }};">{{ r.name }}</span>
-                  <span style="flex:1; height:1px; border-bottom:1px dotted rgba(168,80,106,0.45);"></span>
-                  <span style="color:#a8506a; letter-spacing:0.14em;">{{ r.note }}</span>
+                  <span style="flex:1; height:1px; border-bottom:1px dotted rgba(163,112,92,0.4);"></span>
+                  <span style="color:#a3705c; letter-spacing:0.14em;">{{ r.note }}</span>
                 </div>
               </sc-for>
             </div>
             <div class="folio verso">( 02 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1; padding:9.24vh 0 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5; padding:9.24vh 0 10.39vh; display:flex; flex-direction:column;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:relative; margin:10px 9.23% 0; height:43.29vh;">
-              <div style="position:absolute; left:16px; top:16px; right:-16px; bottom:-16px; background:#f7c2d5; opacity:0.8;"></div>
+              <div style="position:absolute; left:16px; top:16px; right:-16px; bottom:-16px; background:#eccbbd; opacity:0.8;"></div>
               <div style="position:absolute; inset:0; overflow:hidden;">
-                <img class="img-girls3" src="uploads/4c855a40-00a0-4f91-89ee-5ee713e2dffa.jpg" alt="three small girls on the back steps" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:8% 42%; filter:saturate(0.62) contrast(0.92) brightness(1.08);">
-                <div style="position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 45%, rgba(255,248,250,0) 45%, rgba(255,224,234,0.55) 100%);"></div>
-                <div style="position:absolute; inset:0; background:#f7c2d5; mix-blend-mode:multiply; opacity:0.26;"></div>
+                <img class="img-girls3" src="uploads/4c855a40-00a0-4f91-89ee-5ee713e2dffa.jpg" alt="three small girls on the back steps" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:8% 42%; filter:saturate(0.85) contrast(0.97) brightness(1.03);">
+                <div style="position:absolute; inset:0; background:radial-gradient(120% 100% at 50% 45%, rgba(253,246,239,0) 55%, rgba(240,214,196,0.16) 100%);"></div>
+                <div style="position:absolute; inset:0; background:#eccbbd; mix-blend-mode:multiply; opacity:0.1;"></div>
               </div>
             </div>
             <div style="padding:0 10.38%;">
-              <div style="margin-top:34px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">( A CHILDHOOD SPENT TOGEHER )</div>
-              <div style="margin-top:30px; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.3; color:#78243f; text-wrap:pretty;">biking and parks and after school shennenigans together</div>
-              <div style="margin-top:32px; font-size:clamp(11px,1.63vh,14px); line-height:1.8; color:#78243f; max-width:32ch; text-wrap:pretty;">holidays spent chasing summer. at-home scram schools, picnics and laughter.&nbsp;</div>
+              <div style="margin-top:34px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">( A CHILDHOOD SPENT TOGEHER )</div>
+              <div style="margin-top:30px; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.3; color:#6f3a2c; text-wrap:pretty;">biking and parks and after school shennenigans together</div>
+              <div style="margin-top:32px; font-size:clamp(11px,1.63vh,14px); line-height:1.8; color:#6f3a2c; max-width:32ch; text-wrap:pretty;">holidays spent chasing summer. at-home scram schools, picnics and laughter.&nbsp;</div>
             </div>
             <div class="folio recto">( 03 )</div>
           </div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background-color:#efe9e5;">
+      <div class="snap-sec" style="background-color:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5;">
             <img src="uploads/f82f31f0-3b7c-4b00-9454-d88df995a00d.jpg" alt="BRIDE balloons against the curtain" style="position:absolute; left:0%; top:24.10%; width:100%; height:76.34%; object-fit:cover; object-position:50% 60%; opacity:0.89;">
             <sc-for list="{{ skWhite }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:absolute; left:0.4%; height:13.42%; background:#faf5f1; box-sizing:border-box; padding:0 9.23%; display:flex; align-items:center; justify-content:space-between; gap:20px; top:6.21%;">
-              <div style="font-style:italic; font-weight:200; font-size:clamp(16px,2.67vh,23px); line-height:1.24; color:#5c2c40; text-wrap:pretty;">this array of ribbons, stars and lights was perfect</div><div style="flex:0 0 auto; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.24em; text-transform:uppercase; color:#a8506a;">một · hai · ba<br><br>SURPRISE</div>
+            <div style="position:absolute; left:0.4%; height:13.42%; background:#f7ede5; box-sizing:border-box; padding:0 9.23%; display:flex; align-items:center; justify-content:space-between; gap:20px; top:6.21%;">
+              <div style="font-style:italic; font-weight:200; font-size:clamp(16px,2.67vh,23px); line-height:1.24; color:#5c3a30; text-wrap:pretty;">this array of ribbons, stars and lights was perfect</div><div style="flex:0 0 auto; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.24em; text-transform:uppercase; color:#a3705c;">một · hai · ba<br><br>SURPRISE</div>
             </div>
-            <div class="folio verso" style="color:#f2edef;">( 04 )</div>
+            <div class="folio verso" style="color:#f0e2d8;">( 04 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
@@ -693,90 +693,92 @@ em.hl { font-style:italic; color:#c98a4a; }
               <img src="uploads/927251ba-6712-4c26-bb74-fbcf0cd3f20a.jpg" alt="the hotel bed dressed with ribbons and balloons" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:56% 56%;">
             </div>
             <div style="position:absolute; left:6.54%; top:8.66%; bottom:21.65%; display:flex; align-items:flex-start;">
-              <div style="writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">II — THE SET UP</div>
+              <div style="writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">II — THE SET UP</div>
             </div>
             <div style="position:absolute; left:13.85%; top:11.98%; width:46.54%;">
-              <div style="font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#5c2c40; text-wrap:pretty;">ribbons on a string, pink and lovely.</div>
-              <div style="margin-top:16px; font-size:clamp(10px,1.63vh,14px); line-height:1.7; color:rgb(120,36,63); text-wrap:pretty;">bows on pillows, hanging on ceilings, and pink balloons to add some magic.</div>
+              <div style="font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#5c3a30; text-wrap:pretty;">ribbons on a string, pink and lovely.</div>
+              <div style="margin-top:16px; font-size:clamp(10px,1.63vh,14px); line-height:1.7; color:rgb(111,58,44); text-wrap:pretty;">bows on pillows, hanging on ceilings, and pink balloons to add some magic.</div>
             </div>
             <div class="folio recto">( 05 )</div>
           </div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row" style="position:relative;">
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:absolute; left:9.23%; top:18.47%; width:57.69%; height:57.72%; overflow:hidden;">
               <img src="uploads/2b7eee8d-87d6-4c23-933d-c848007e8147-mtjgcayk-dg1u.jpg" alt="Sandy's Bachelorette banner" style="position:absolute; inset:0; width:119.33%; height:108.25%; object-fit:cover; object-position:30% 50%; left:-15%; top:-2%; opacity:0.95;">
             </div>
-            <div style="position:absolute; left:9.23%; top:79.08%; width:57.69%; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">( THE FIRST THING YOU SEE WALKING IN )</div>
-            <div style="position:absolute; right:6.54%; top:18.47%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">III — THE SURPRISE</div>
+            <div style="position:absolute; left:9.23%; top:79.08%; width:57.69%; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">( THE FIRST THING YOU SEE WALKING IN )</div>
+            <div style="position:absolute; right:6.54%; top:18.47%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">III — THE SURPRISE</div>
             <div class="folio verso">( 06 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
             <img src="uploads/d9392ad7-38bf-4919-8fb7-1f04b41d6906.jpg" alt="Sandy in her veil reaching for the bouquet" style="position:absolute; inset:0; width:101.15%; height:100.58%; object-fit:cover; object-position:54% 42%; left:0%; top:-0.29%; opacity:0.95;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div class="folio recto" style="color:#efe9e5;">( 07 )</div>
+            <div class="folio recto" style="color:#f3ebe2;">( 07 )</div>
           </div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:absolute; left:15.77%; right:15.77%; top:13.85%; height:56.57%; overflow:hidden;">
-              <img src="uploads/61412918-2e7f-4db6-9d6d-68922b6cf53c.jpg" alt="the bouquet handed over at the window, city behind" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 44%; opacity:0.9;">
+              <img src="uploads/61412918-2e7f-4db6-9d6d-68922b6cf53c.jpg" alt="the bouquet handed over at the window, city behind" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:52% 44%; opacity:0.9; filter:saturate(0.92) brightness(1.02);">
+              <div style="position:absolute; inset:0; background:#eccbbd; mix-blend-mode:multiply; opacity:0.08;"></div>
             </div>
-            <div style="position:absolute; left:6.54%; top:13.85%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">iv — the flowers</div>
-            <div style="position:absolute; left:15.77%; right:15.77%; top:73.88%; font-size:clamp(9px,1.4vh,12px); line-height:1.8; color:#78243f; text-wrap:pretty;">a candid shot<br>flowers being passed over hands<br>golden hour&nbsp;</div>
+            <div style="position:absolute; left:6.54%; top:13.85%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">iv — the flowers</div>
+            <div style="position:absolute; left:15.77%; right:15.77%; top:73.88%; font-size:clamp(9px,1.4vh,12px); line-height:1.8; color:#6f3a2c; text-wrap:pretty;">a candid shot<br>flowers being passed over hands<br>golden hour&nbsp;</div>
             <div class="folio verso">( 08 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:absolute; left:28.85%; right:0; top:0; height:67.82%; overflow:hidden;">
-              <img src="uploads/ffda12d3-4dcf-49e3-aa0b-554289a1d204.jpg" alt="Sandy at the bright window with the bouquet" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:54% 36%;">
+              <img src="uploads/ffda12d3-4dcf-49e3-aa0b-554289a1d204.jpg" alt="Sandy at the bright window with the bouquet" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:54% 36%; filter:saturate(0.92) brightness(1.02);">
+              <div style="position:absolute; inset:0; background:#eccbbd; mix-blend-mode:multiply; opacity:0.08;"></div>
             </div>
-            <div style="position:absolute; left:6.54%; top:9.24%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">morning, the second day</div>
-            <div style="position:absolute; left:9.23%; right:10.77%; top:75.32%; font-style:italic; font-weight:200; font-size:clamp(19px,3.49vh,30px); line-height:1.22; color:#78243f; text-wrap:pretty;">a dream,<br>almost like a fairytale</div>
+            <div style="position:absolute; left:6.54%; top:9.24%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">morning, the second day</div>
+            <div style="position:absolute; left:9.23%; right:10.77%; top:75.32%; font-style:italic; font-weight:200; font-size:clamp(19px,3.49vh,30px); line-height:1.22; color:#6f3a2c; text-wrap:pretty;">a dream,<br>almost like a fairytale</div>
             <div class="folio recto">( 09 )</div>
           </div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:9.24vh 6.5% 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3; padding:9.24vh 6.5% 10.39vh; display:flex; flex-direction:column;">
             <img src="uploads/pasted-1788276554262-0.png" alt="petals, blurred" style="position:absolute; inset:0; width:100.58%; height:100.29%; object-fit:cover; object-position:50% 50%; opacity:0.55;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a8446a;">iv — est. sometime in primary school</div>
-            <h2 style="margin:18px 0 0; font-weight:200; font-style:italic; font-size:clamp(24px,5.12vh,44px); line-height:1.02; letter-spacing:-0.02em; color:#5c2c40;">bui's restaurant</h2>
-            <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">( GRANDPARENT'S HOUSE · LIVING ROOM · BALCONY )</div>
+            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a3705c;">iv — est. sometime in primary school</div>
+            <h2 style="margin:18px 0 0; font-weight:200; font-style:italic; font-size:clamp(24px,5.12vh,44px); line-height:1.02; letter-spacing:-0.02em; color:#5c3a30;">bui's restaurant</h2>
+            <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">( GRANDPARENT'S HOUSE · LIVING ROOM · BALCONY )</div>
             <div style="margin-top:44px; display:flex; flex-direction:column; gap:20px;">
               <sc-for list="{{ menu }}" as="m" hint-placeholder-count="4">
-                <div style="display:flex; align-items:baseline; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:clamp(9px,1.4vh,12px); letter-spacing:0.16em; text-transform:uppercase; color:#5c2c40;">
+                <div style="display:flex; align-items:baseline; gap:10px; font-family:'IBM Plex Mono',monospace; font-size:clamp(9px,1.4vh,12px); letter-spacing:0.16em; text-transform:uppercase; color:#5c3a30;">
                   <span>{{ m.item }}</span>
-                  <span style="flex:1; height:1px; border-bottom:1px dotted rgba(168,80,106,0.5);"></span>
-                  <span style="color:#a8506a;">{{ m.price }}</span>
+                  <span style="flex:1; height:1px; border-bottom:1px dotted rgba(163,112,92,0.45);"></span>
+                  <span style="color:#a3705c;">{{ m.price }}</span>
                 </div>
               </sc-for>
             </div>
-            <div style="margin-top:auto; font-size:clamp(11px,1.74vh,15px); line-height:1.8; color:#78243f; max-width:30ch; text-wrap:pretty;">open after school, primary years. <br>still open.</div>
+            <div style="margin-top:auto; font-size:clamp(11px,1.74vh,15px); line-height:1.8; color:#6f3a2c; max-width:30ch; text-wrap:pretty;">open after school, primary years. <br>still open.</div>
             <div class="folio verso">( 10 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
@@ -784,58 +786,58 @@ em.hl { font-style:italic; color:#c98a4a; }
               <img src="uploads/dac7cd63-0217-4d8a-8062-feb0ee2bf4fc.jpg" alt="the cheers around the table at night" style="position:absolute; inset:0; width:99.81%; height:96.68%; object-fit:cover; object-position:50% 54%; opacity:0.95;">
             </div>
             <div style="position:absolute; left:9.23%; right:9.23%; top:72.15%;">
-              <div style="font-style:italic; font-weight:200; font-size:clamp(20px,3.72vh,32px); line-height:1.2; color:#78243f; text-wrap:pretty;">our version of fun, <br>10 years later&nbsp;</div>
+              <div style="font-style:italic; font-weight:200; font-size:clamp(20px,3.72vh,32px); line-height:1.2; color:#6f3a2c; text-wrap:pretty;">our version of fun, <br>10 years later&nbsp;</div>
             </div>
-            <div style="position:absolute; left:9.23%; right:9.23%; bottom:9%; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">NIGHT ONE · AFTER DINNER</div>
+            <div style="position:absolute; left:9.23%; right:9.23%; bottom:9%; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.26em; text-transform:uppercase; color:#a3705c;">NIGHT ONE · AFTER DINNER</div>
             <div class="folio recto">( 11 )</div>
           </div>
         </div>
       </div>
 
-      <div class="snap-sec" style="background-color:#efe9e5;">
+      <div class="snap-sec" style="background-color:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <div style="position:absolute; left:9.23%; right:9.23%; top:6.64%; bottom:6.64%; display:flex; flex-direction:column; gap:14px;">
               <div style="flex:1; min-height:0; display:flex; gap:14px;">
-                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">/ arriving</div>
+                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a3705c;">/ arriving</div>
                 <div style="flex:1; min-height:0; overflow:hidden;"><img src="uploads/82722a0f-9781-4958-aa38-c504f7501a50.jpg" alt="walking in, arms linked" style="width:100%; height:100%; object-fit:cover; object-position:50% 42%;"></div>
               </div>
               <div style="flex:1; min-height:0; display:flex; gap:14px;">
-                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">/ laughing</div>
+                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a3705c;">/ laughing</div>
                 <div style="flex:1; min-height:0; overflow:hidden;"><img src="uploads/37e673b8-e756-4af6-813e-62668590a9b8.jpg" alt="four of us laughing at brunch" style="width:100%; height:100%; object-fit:cover; object-position:50% 55%;"></div>
               </div>
               <div style="flex:1; min-height:0; display:flex; gap:14px;">
-                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a8506a;">/ looking out</div>
+                <div style="flex:0 0 20px; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.26em; text-transform:uppercase; color:#a3705c;">/ looking out</div>
                 <div style="flex:1; min-height:0; overflow:hidden;"><img src="uploads/72b726bb-898d-4c9c-a3e9-f2bdbedeb694.jpg" alt="looking out at the view, veil and balloons" style="width:100%; height:100%; object-fit:cover; object-position:50% 62%;"></div>
               </div>
             </div>
             <div class="folio verso">( 12 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); padding:9.24vh 0 10.39vh; display:flex; flex-direction:column; background-color:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); padding:9.24vh 0 10.39vh; display:flex; flex-direction:column; background-color:#f7ede5;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:absolute; left:6.54%; top:9.24%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">v — in between</div>
+            <div style="position:absolute; left:6.54%; top:9.24%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">v — in between</div>
             <div style="position:absolute; left:8.46%; top:24.82%; width:23.08%; height:10.97%;"></div>
-            <div style="position:absolute; left:19.42%; top:8.08%; font-style:italic; font-weight:200; font-size:clamp(27px,5.12vh,44px); line-height:1.16; color:#5c2c40; text-wrap:pretty; width:70.38%; text-align:right;">capturing the small moments too</div>
+            <div style="position:absolute; left:19.42%; top:8.08%; font-style:italic; font-weight:200; font-size:clamp(27px,5.12vh,44px); line-height:1.16; color:#5c3a30; text-wrap:pretty; width:70.38%; text-align:right;">capturing the small moments too</div>
             <div style="position:absolute; left:12.5%; top:37.23%; width:75%; height:38.96%; overflow:hidden;">
               <img src="uploads/0c2ea976-cedb-48c1-889f-6062e011c730.jpg" alt="four of us at the restaurant" style="width:100%; height:100%; object-fit:cover; object-position:50% 46%;">
             </div>
             <div style="position:absolute; left:12.5%; right:12.5%; top:79.65%; display:flex; gap:16px;">
               <div style="flex:1;">
-                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#78243f;">arriving</div>
-                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a8506a;">best food of the weekend, we were just happy to get pictures together</div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#6f3a2c;">arriving</div>
+                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a3705c;">best food of the weekend, we were just happy to get pictures together</div>
               </div>
               <div style="flex:1;">
-                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#78243f;">laughing</div>
-                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a8506a;">sheltered by a tree, smiles after a very very full meal<br></div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#6f3a2c;">laughing</div>
+                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a3705c;">sheltered by a tree, smiles after a very very full meal<br></div>
               </div>
               <div style="flex:1;">
-                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#78243f;">looking out</div>
-                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a8506a;">getting her picture taken, the behind the scenes of the bride to be</div>
+                <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:#6f3a2c;">looking out</div>
+                <div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(6px,0.93vh,8px); letter-spacing:0.08em; line-height:1.9; text-transform:uppercase; color:#a3705c;">getting her picture taken, the behind the scenes of the bride to be</div>
               </div>
             </div>
             <div class="folio recto">( 13 )</div>
@@ -843,17 +845,17 @@ em.hl { font-style:italic; color:#c98a4a; }
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
             <img src="uploads/8c925829-e5e6-40b4-bfe6-1220a0558a83.jpg" alt="five of us in pastels in the arched corridor" style="position:absolute; inset:0; width:113.08%; height:107.5%; object-fit:cover; object-position:50% 50%; left:-9.81%; top:-6.64%;">
-            <div style="position:absolute; left:6.54%; top:8.66%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#78243f;">vi — in pastel</div>
-            <div class="folio verso" style="color:#efe9e5;">( 14 )</div>
+            <div style="position:absolute; left:6.54%; top:8.66%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#6f3a2c;">vi — in pastel</div>
+            <div class="folio verso" style="color:#f3ebe2;">( 14 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background-color:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background-color:#f7ede5;">
             <sc-for list="{{ skRose2 }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
@@ -861,8 +863,8 @@ em.hl { font-style:italic; color:#c98a4a; }
               <img src="uploads/mood-petals-book.png" alt="rose petals on an open book" style="width:100%; height:100%; object-fit:cover; opacity:0.9;">
             </div>
             <div style="position:absolute; left:44.62%; right:7.69%; top:11.54%;">
-              <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">( the athens of it all )</div>
-              <div style="margin-top:18px; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.3; color:#5c2c40; text-wrap:pretty;">we grew up on greek myths, thunderbolts and all.</div>
+              <div style="font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">( the athens of it all )</div>
+              <div style="margin-top:18px; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.3; color:#5c3a30; text-wrap:pretty;">we grew up on greek myths, thunderbolts and all.</div>
             </div>
             <div style="position:absolute; left:44.62%; right:7.69%; bottom:10.10%; width:44.23%; height:25.97%; overflow:hidden;">
               <img src="uploads/mood-cherub-statues.png" alt="marble cherub statues" style="width:100%; height:100%; object-fit:cover;">
@@ -872,9 +874,9 @@ em.hl { font-style:italic; color:#c98a4a; }
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:0 0 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3; padding:0 0 10.39vh; display:flex; flex-direction:column;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
@@ -882,27 +884,27 @@ em.hl { font-style:italic; color:#c98a4a; }
               <img src="uploads/f38b9658-2579-484a-99ae-86912c5babba.jpg" alt="pastel candles shaped like sundaes and drinks" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 38%; opacity:0.95;">
             </div>
             <div style="padding:0 9.23%;">
-              <div style="margin-top:40px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a8506a;">vii — the candle workshop</div>
-              <div style="margin-top:20px; font-style:italic; font-weight:200; font-size:clamp(16px,3.02vh,26px); line-height:1.3; color:#5c2c40; text-wrap:pretty;">creativity has always been ours</div>
+              <div style="margin-top:40px; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a3705c;">vii — the candle workshop</div>
+              <div style="margin-top:20px; font-style:italic; font-weight:200; font-size:clamp(16px,3.02vh,26px); line-height:1.3; color:#5c3a30; text-wrap:pretty;">creativity has always been ours</div>
             </div>
             <div class="folio verso">( 16 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); background:#f7ede5;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:absolute; left:9.23%; right:9.23%; top:9.24%; display:flex; align-items:baseline; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.3em; text-transform:uppercase; color:#a8506a;">
+            <div style="position:absolute; left:9.23%; right:9.23%; top:9.24%; display:flex; align-items:baseline; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.3em; text-transform:uppercase; color:#a3705c;">
               <span>THE SPREAD, BEFORE THE GAMES</span>
               <span>night two</span>
             </div>
-            <div style="position:absolute; left:9.23%; right:21.15%; top:21.65%; font-style:italic; font-weight:200; font-size:clamp(21px,4.42vh,38px); line-height:1.12; color:#5c2c40; text-wrap:pretty;">for the bride to be.</div>
-            <div style="position:absolute; left:9.04%; top:34.63%; font-size:clamp(9px,1.4vh,12px); line-height:1.8; color:#78243f; text-wrap:pretty; width:54.04%;">a gorgeous homemade cake, a&nbsp;charcuterie board as a throwback to all our girl get togethers and late board game nights, and fruits for a fruiter lover bride.&nbsp;</div>
+            <div style="position:absolute; left:9.23%; right:21.15%; top:21.65%; font-style:italic; font-weight:200; font-size:clamp(21px,4.42vh,38px); line-height:1.12; color:#5c3a30; text-wrap:pretty;">for the bride to be.</div>
+            <div style="position:absolute; left:9.04%; top:34.63%; font-size:clamp(9px,1.4vh,12px); line-height:1.8; color:#6f3a2c; text-wrap:pretty; width:54.04%;">a gorgeous homemade cake, a&nbsp;charcuterie board as a throwback to all our girl get togethers and late board game nights, and fruits for a fruiter lover bride.&nbsp;</div>
             <div style="position:absolute; left:9.23%; right:9.23%; bottom:16.16%; display:flex; gap:16px;">
               <sc-for list="{{ plates }}" as="p" hint-placeholder-count="3">
                 <div style="flex:1;">
                   <div style="width:100%; height:24.82vh; overflow:hidden;">
                     <div style="width:100%; height:100%; background-image:url('uploads/c4372ebe-9ee2-418a-99f3-80c8bd04be72.jpg'); background-repeat:no-repeat; background-size:{{ p.size }}; background-position:{{ p.pos }}; transform:{{ p.tf }};"></div>
-                  </div><div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">{{ p.label }}</div>
+                  </div><div style="margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">{{ p.label }}</div>
                 </div>
               </sc-for>
             </div>
@@ -911,30 +913,30 @@ em.hl { font-style:italic; color:#c98a4a; }
         </div>
       </div>
 
-      <div class="snap-sec" style="background:#efe9e5;">
+      <div class="snap-sec" style="background:#f3ebe2;">
         <div class="spread-row">
-          <div class="pg" style="width:min(64vh,660px); padding:9.24vh 0 10.39vh; display:flex; flex-direction:column; background-color:#faf5f1;">
+          <div class="pg" style="width:min(64vh,660px); padding:9.24vh 0 10.39vh; display:flex; flex-direction:column; background-color:#f7ede5;">
             <sc-for list="{{ skRose }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:absolute; left:6.54%; top:21.65%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a8506a;">viii — all of us</div>
+            <div style="position:absolute; left:6.54%; top:21.65%; writing-mode:vertical-rl; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.34em; text-transform:uppercase; color:#a3705c;">viii — all of us</div>
             <div style="position:absolute; left:16.92%; right:10.77%; top:28.28%; height:36.08%; overflow:hidden;">
               <img src="uploads/fb7d5a7b-26a8-42b7-bac8-ac212912e277.jpg" alt="all of us in front of the balloons and cake" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%;">
             </div>
-            <div style="position:absolute; left:16.92%; right:10.77%; top:68.40%; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8506a;">( OH, HOW WE'VE GROWN )</div>
-            <div style="position:absolute; left:16.92%; right:16.92%; top:79.65%; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#78243f; text-wrap:pretty;">one for the picture books</div>
+            <div style="position:absolute; left:16.92%; right:10.77%; top:68.40%; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">( OH, HOW WE'VE GROWN )</div>
+            <div style="position:absolute; left:16.92%; right:16.92%; top:79.65%; font-style:italic; font-weight:200; font-size:clamp(17px,3.14vh,27px); line-height:1.22; color:#6f3a2c; text-wrap:pretty;">one for the picture books</div>
             <div class="folio verso">( 18 )</div>
           </div>
-          <div class="pg" style="width:min(64vh,660px); background:#fdfaf8; padding:10.68vh 10.38% 10.39vh; display:flex; flex-direction:column;">
+          <div class="pg" style="width:min(64vh,660px); background:#fdf8f3; padding:10.68vh 10.38% 10.39vh; display:flex; flex-direction:column;">
             <img src="uploads/pasted-1788276554262-0.png" alt="petals, blurred" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 50%;">
             <sc-for list="{{ skWhite }}" as="s" hint-placeholder-count="0">
               <div class="sk" style="left:{{ s.l }}; top:{{ s.t }}; width:{{ s.w }}; height:{{ s.w }}; background:{{ s.c }}; animation-delay:{{ s.d }};"></div>
             </sc-for>
-            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a8446a;">and then</div>
+            <div style="position:relative; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.16vh,10px); letter-spacing:0.32em; text-transform:uppercase; color:#a3705c;">and then</div>
             <sc-if value="{{ bilingual }}" hint-placeholder-val="{{ true }}">
-              <h2 style="position:relative; margin:22px 0 0; font-weight:200; font-style:italic; font-size:clamp(29px,6.05vh,52px); line-height:1.02; letter-spacing:-0.02em; color:#78243f;">first of the eight.</h2><div style="position:relative; margin-top:36px; font-size:clamp(13px,2.21vh,19px); line-height:1.7; color:#78243f; max-width:30ch; text-wrap:pretty;"><br><br><br>we were girls together.</div><div style="position:relative; margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.28vh,11px); letter-spacing:0.24em; color:#a8446a;">( thương )</div>
+              <h2 style="position:relative; margin:22px 0 0; font-weight:200; font-style:italic; font-size:clamp(29px,6.05vh,52px); line-height:1.02; letter-spacing:-0.02em; color:#6f3a2c;">first of the eight.</h2><div style="position:relative; margin-top:36px; font-size:clamp(13px,2.21vh,19px); line-height:1.7; color:#6f3a2c; max-width:30ch; text-wrap:pretty;"><br><br><br>we were girls together.</div><div style="position:relative; margin-top:auto; font-family:'IBM Plex Mono',monospace; font-size:clamp(8px,1.28vh,11px); letter-spacing:0.24em; color:#a3705c;">( thương )</div>
             </sc-if>
-            <div style="position:relative; margin-top:22px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a8446a;">vivixrecords · vol 02 · end</div>
+            <div style="position:relative; margin-top:22px; font-family:'IBM Plex Mono',monospace; font-size:clamp(7px,1.05vh,9px); letter-spacing:0.2em; text-transform:uppercase; color:#a3705c;">vivixrecords · vol 02 · end</div>
             <div class="folio recto">( 19 )</div>
           </div>
         </div>
@@ -1148,14 +1150,14 @@ class Component extends DCLogic {
       bilingual: this.props.bilingual ?? true,
       doodles: this.props.doodles ?? true,
       grainOpacity: String(this.props.grain ?? 0.35),
-      skRose: sparkOn ? this.spark(0, '#f7c2d5') : [],
-      skRose2: sparkOn ? this.spark(2, '#a8506a') : [],
-      skWhite: sparkOn ? this.spark(1, '#fff8fa') : [],
+      skRose: sparkOn ? this.spark(0, '#eccbbd') : [],
+      skRose2: sparkOn ? this.spark(2, '#a3705c') : [],
+      skWhite: sparkOn ? this.spark(1, '#fdf6f0') : [],
       roster: VOL02_NAMES.map((n, i) => ({
         n: String(i + 1).padStart(2, '0'),
         name: n,
         note: VOL02_NOTES[i],
-        col: VOL02_NOTES[i] ? '#a8506a' : '#5c2c40',
+        col: VOL02_NOTES[i] ? '#a3705c' : '#5c3a30',
         weight: '400'
       })),
       plates: [
