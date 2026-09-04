@@ -48,6 +48,10 @@ em.hl { font-style:italic; color:#c98a4a; }
    color where it sits on a photo, which always wins over this. */
 .folio.verso { color:#6f3a2c; }
 .folio.recto { color:#5c3a30; }
+/* Vol 02's page vs. backdrop are near-identical creams, so the leaf
+   needs a cast shadow to read as an object resting on the backdrop
+   rather than a seam in one continuous field. */
+.vol02-wrap .pg { box-shadow:0 22px 46px -14px rgba(76,48,36,0.38), 0 3px 8px rgba(76,48,36,0.16); border:1px solid rgba(76,48,36,0.14); }
 /* Vol 02's twinkling sparkle — a small clipped diamond, staggered and
    looping, scattered across every leaf via the sk* prop arrays. */
 .sk { position:absolute; pointer-events:none; clip-path:polygon(50% 0%,57% 43%,100% 50%,57% 57%,50% 100%,43% 57%,0% 50%,43% 43%); animation:sk-tw 3.6s ease-in-out infinite; }
@@ -610,7 +614,7 @@ em.hl { font-style:italic; color:#c98a4a; }
   </sc-if>
 
   <sc-if value="{{ isVol02 }}" hint-placeholder-val="{{ false }}">
-    <div class="snap-wrap" style="color:#5c3a30; font-weight:300;">
+    <div class="snap-wrap vol02-wrap" style="color:#5c3a30; font-weight:300;">
 
       <div class="snap-sec" style="background-color:#f3ebe2;">
         <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
