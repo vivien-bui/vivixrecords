@@ -267,6 +267,7 @@
     layer.innerHTML =
       '<div class="zf-probe"></div>' +
       '<div class="zf-stage">' +
+        '<div class="zf-form"></div>' +
         '<div class="zf-cast" hidden></div>' +
         '<div class="zf-flap" hidden>' +
           '<div class="zf-face"></div>' +
@@ -428,8 +429,10 @@
     flap.style.transform = 'scale(' + box.s.toFixed(5) + ') matrix(' +
       a.toFixed(5) + ',' + b.toFixed(5) + ',' + b.toFixed(5) + ',' + d.toFixed(5) +
       ',' + (k * nx).toFixed(3) + ',' + (k * ny).toFixed(3) + ')';
-    flap.style.filter = 'drop-shadow(' + (nx * 6).toFixed(1) + 'px ' +
-      (ny * 6).toFixed(1) + 'px 15px rgba(34,23,12,0.5))';
+    flap.style.filter =
+      'drop-shadow(' + (nx * 3).toFixed(1) + 'px ' + (ny * 3).toFixed(1) +
+      'px 5px rgba(28,18,8,0.45)) drop-shadow(' + (nx * 12).toFixed(1) + 'px ' +
+      (ny * 12).toFixed(1) + 'px 22px rgba(28,18,8,0.4))';
     // Both gradients run along n, so their far stop always lands on the crease.
     var ang = (Math.atan2(nx, -ny) * 180 / Math.PI).toFixed(2) + 'deg';
     sheen.style.setProperty('--zf-ang', ang);

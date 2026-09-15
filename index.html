@@ -281,8 +281,18 @@ html.zf-on .snap-sec {
   width:var(--zf-nw); height:var(--zf-nh);
   transform:scale(var(--zf-s)); transform-origin:0 0;
   min-height:0; padding:0; display:block; visibility:hidden;
-  box-shadow:0 26px 58px -18px rgba(28,18,8,0.55), 0 2px 6px rgba(28,18,8,0.2),
-             0 0 0 1px rgba(255,248,236,0.07);
+  /* Read outward from the leaf: its own edge, the contact shadow it sits
+     in, then two more leaves showing at the fore-edge and the tail, each
+     with its own shadow, and last the whole block's cast shadow. Later
+     layers paint behind earlier ones, so the list runs front to back. */
+  box-shadow:
+    0 0 0 1px rgba(255,248,236,0.07),
+    0 1px 2px rgba(26,16,6,0.4),
+    4px 5px 0 -1px var(--zf-paper),
+    5px 6px 2px -1px rgba(26,16,6,0.3),
+    8px 10px 0 -2px var(--zf-paper),
+    9px 11px 3px -2px rgba(26,16,6,0.24),
+    0 28px 60px -18px rgba(28,18,8,0.6);
 }
 /* !important on position: a couple of spread-rows carry an inline
    `position:relative` for their full-bleed plate, and a relative row
@@ -316,6 +326,21 @@ html.zf-on .snap-sec[data-zf="next"], html.zf-on .pg[data-zf="next"] { visibilit
   position:absolute; left:var(--zf-left); top:var(--zf-top);
   width:var(--zf-w); height:var(--zf-h); overflow:hidden;
 }
+/* The light on the sheet, under everything else in the stage: a leaf is
+   bound at the left, so it falls away into the gutter there, lifts a
+   little at the fore-edge, and takes its light from the top-left. This is
+   most of what stops the deck reading as a flat rectangle, and it sits
+   below the flap on purpose — a leaf in the air is out of the gutter. */
+#zf-layer .zf-form {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    linear-gradient(90deg, rgba(18,11,4,0.34) 0%, rgba(18,11,4,0.16) 2.5%,
+                           rgba(18,11,4,0.05) 7%, rgba(18,11,4,0) 16%),
+    linear-gradient(90deg, rgba(18,11,4,0) 86%, rgba(18,11,4,0.05) 97%,
+                           rgba(255,250,240,0.1) 100%),
+    linear-gradient(0deg, rgba(18,11,4,0.1) 0%, rgba(18,11,4,0) 14%),
+    radial-gradient(130% 80% at 30% 12%, rgba(255,250,240,0.12) 0%, rgba(255,250,240,0) 62%);
+}
 /* Flap and cast are laid out at the unscaled page box, like the leaves
    themselves — the fold is solved in those coordinates and the scale is
    folded into the transform afterwards. */
@@ -330,7 +355,8 @@ html.zf-on .snap-sec[data-zf="next"], html.zf-on .pg[data-zf="next"] { visibilit
 #zf-layer .zf-cast {
   transform:scale(var(--zf-s));
   background:linear-gradient(var(--zf-ang,0deg),
-    rgba(20,13,6,0) 62%, rgba(20,13,6,0.2) 88%, rgba(20,13,6,0.44) 100%);
+    rgba(16,10,3,0) 34%, rgba(16,10,3,0.08) 62%, rgba(16,10,3,0.24) 84%,
+    rgba(16,10,3,0.48) 96%, rgba(16,10,3,0.62) 100%);
 }
 /* Its own stacking context: the cloned sheet carries the deck's z-index,
    which would otherwise lift it over the paper backing below. */
@@ -344,17 +370,22 @@ html.zf-on .snap-sec[data-zf="next"], html.zf-on .pg[data-zf="next"] { visibilit
    face at a whisker under opaque so about a twentieth of the print
    shows through the way it does on thin paper held to the light. */
 #zf-layer .zf-back { position:absolute; inset:0; z-index:1; background:var(--zf-paper,#e8dec8); opacity:0.94; }
-/* Lit along the fold — the crease catches the light, the loose tip
-   falls into shadow. Angle is set per frame, always square to the fold. */
+/* Lit as a curl rather than a crease: the loose tip falls into shadow,
+   the sheet flattens out through the middle, dips once where the paper
+   starts to bend, and then rolls up into the highlight the fold itself
+   carries. That dark-light-dark-bright run is what gives the flap a
+   thickness the eye can read. Angle is set per frame, square to the fold. */
 #zf-layer .zf-sheen {
   position:absolute; inset:0; z-index:2;
   background:linear-gradient(var(--zf-ang,0deg),
-    rgba(46,32,16,0.26) 0%,
-    rgba(46,32,16,0.07) 12%,
-    rgba(255,255,255,0.05) 46%,
-    rgba(255,255,255,0.26) 84%,
-    rgba(255,255,255,0.58) 97%,
-    rgba(120,96,62,0.4) 100%);
+    rgba(34,22,10,0.34) 0%,
+    rgba(34,22,10,0.13) 9%,
+    rgba(34,22,10,0.02) 28%,
+    rgba(255,252,246,0.06) 58%,
+    rgba(34,22,10,0.12) 79%,
+    rgba(255,252,246,0.4) 92%,
+    rgba(255,252,246,0.74) 97.5%,
+    rgba(150,118,74,0.5) 100%);
 }
 /* The dog-ear: the corner sits very slightly turned up, so there is
    something to reach for. It breathes until the reader has turned a
