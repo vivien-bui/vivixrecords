@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200;0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,200;1,6..72,300;1,6..72,400;1,6..72,500&amp;family=IBM+Plex+Mono:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <script src="./image-slot.js"></script>
+<script src="./page-flip.js"></script>
 <style>
 html, body { margin:0; padding:0; background:#eee7d8; }
 body { -webkit-font-smoothing: antialiased; }
@@ -236,6 +237,155 @@ em.hl { font-style:italic; color:#c98a4a; }
   .spine-slot { height:70px; }
   /* The shelf is right there and already says both of these. */
   .shelf-hint, .shelf-count { display:none; }
+}
+/* ── The volume as a book you turn (narrow screens) ───────────
+   On a phone a volume stops scrolling and becomes a deck. Every
+   leaf is dealt onto one sheet, only the current one and the one
+   under it are drawn, and page-flip.js folds the top leaf over
+   your finger. Four rules make that possible:
+
+   1. A leaf is still laid out at exactly the box the pages were
+      written for — 100vw x 88vh, the old mobile page — and then
+      scaled down bodily to fit the sheet. The type on these pages
+      is sized in vh, so shrinking the box without shrinking the
+      unit would push the long pages off their own bottom edge.
+   2. The sheet's rectangle and that scale are stated once, as
+      vars on the root, so the deck and the overlay carrying the
+      folded flap agree on them to the pixel.
+   3. Sections and spread-rows collapse onto that same rectangle,
+      which puts a spread's full-bleed backdrop under the one page
+      being read instead of across two.
+   4. Which leaf is which rides on `data-zf` — an attribute React
+      never writes — so the script can restack the deck without
+      fighting a re-render for an inline style. */
+html.zf-on, html.zf-on body { overflow:hidden; overscroll-behavior:none; }
+html.zf-on {
+  --zf-nw:100vw;          /* the page box as designed... */
+  --zf-nh:88vh;
+  --zf-s:1;               /* ...and what page-flip.js scales it by */
+  --zf-w:calc(var(--zf-nw) * var(--zf-s));
+  --zf-h:calc(var(--zf-nh) * var(--zf-s));
+  --zf-left:0px; --zf-top:0px;
+}
+html.zf-on .snap-wrap {
+  position:fixed; inset:0; height:auto; overflow:hidden;
+  scroll-snap-type:none; touch-action:none; -webkit-user-select:none; user-select:none;
+  --zf-paper:#e8dec8;
+  background:var(--zf-back,#eee7d8); transition:background-color 560ms ease;
+}
+html.zf-on .vol02-wrap { --zf-paper:#f8f0e7; }
+/* The leaves are one surface to drag, not a page of draggable pictures. */
+html.zf-on .snap-wrap img { -webkit-user-drag:none; pointer-events:none; }
+html.zf-on .snap-sec {
+  position:absolute; left:var(--zf-left); top:var(--zf-top);
+  width:var(--zf-nw); height:var(--zf-nh);
+  transform:scale(var(--zf-s)); transform-origin:0 0;
+  min-height:0; padding:0; display:block; visibility:hidden;
+  box-shadow:0 26px 58px -18px rgba(28,18,8,0.55), 0 2px 6px rgba(28,18,8,0.2),
+             0 0 0 1px rgba(255,248,236,0.07);
+}
+/* !important on position: a couple of spread-rows carry an inline
+   `position:relative` for their full-bleed plate, and a relative row
+   would hand its absolutely-placed leaves a height of nothing. */
+html.zf-on .spread-row {
+  position:absolute !important; inset:0;
+  display:block; width:auto; overflow:visible;
+}
+/* A spread's full-bleed plate is a sibling of its pages, sized for two
+   of them — on the deck it belongs to whichever single page is up. */
+html.zf-on .spread-row > :not(.pg) { width:100% !important; }
+html.zf-on .pg {
+  position:absolute !important; inset:0 !important;
+  width:100% !important; height:100% !important;
+  flex:none !important; aspect-ratio:auto !important; visibility:hidden;
+}
+/* The leaf's own cast shadow is the sheet's job now. */
+html.zf-on .vol02-wrap .pg { box-shadow:none; border:0; }
+html.zf-on .snap-sec[data-zf="cur"], html.zf-on .pg[data-zf="cur"] { visibility:visible; z-index:3; }
+html.zf-on .snap-sec[data-zf="next"], html.zf-on .pg[data-zf="next"] { visibility:visible; z-index:2; }
+
+/* The folded flap and the reader's furniture, both parked on <body>
+   outside the React root. Under the header (120) and the grain (130),
+   so a turning page still gets the film over it. */
+#zf-layer { position:fixed; inset:0; z-index:110; pointer-events:none; }
+#zf-layer .zf-probe {
+  position:absolute; left:0; top:0; visibility:hidden;
+  width:var(--zf-nw); height:var(--zf-nh);
+}
+#zf-layer .zf-stage {
+  position:absolute; left:var(--zf-left); top:var(--zf-top);
+  width:var(--zf-w); height:var(--zf-h); overflow:hidden;
+}
+/* Flap and cast are laid out at the unscaled page box, like the leaves
+   themselves — the fold is solved in those coordinates and the scale is
+   folded into the transform afterwards. */
+#zf-layer .zf-flap, #zf-layer .zf-cast {
+  position:absolute; left:0; top:0;
+  width:var(--zf-nw); height:var(--zf-nh);
+  transform-origin:0 0;
+}
+#zf-layer .zf-flap { backface-visibility:hidden; will-change:transform, clip-path, filter; }
+/* What the lifted leaf keeps off the page it just uncovered: the same
+   region the flap came from, shaded hard against the crease. */
+#zf-layer .zf-cast {
+  transform:scale(var(--zf-s));
+  background:linear-gradient(var(--zf-ang,0deg),
+    rgba(20,13,6,0) 62%, rgba(20,13,6,0.2) 88%, rgba(20,13,6,0.44) 100%);
+}
+/* Its own stacking context: the cloned sheet carries the deck's z-index,
+   which would otherwise lift it over the paper backing below. */
+#zf-layer .zf-face { position:absolute; inset:0; overflow:hidden; z-index:0; isolation:isolate; }
+#zf-layer .zf-face .snap-sec {
+  left:0 !important; top:0 !important;
+  width:100% !important; height:100% !important;
+  transform:none !important; visibility:visible !important; box-shadow:none !important;
+}
+/* The back of the sheet: the stock's own colour, laid over the leaf's
+   face at a whisker under opaque so about a twentieth of the print
+   shows through the way it does on thin paper held to the light. */
+#zf-layer .zf-back { position:absolute; inset:0; z-index:1; background:var(--zf-paper,#e8dec8); opacity:0.94; }
+/* Lit along the fold — the crease catches the light, the loose tip
+   falls into shadow. Angle is set per frame, always square to the fold. */
+#zf-layer .zf-sheen {
+  position:absolute; inset:0; z-index:2;
+  background:linear-gradient(var(--zf-ang,0deg),
+    rgba(46,32,16,0.26) 0%,
+    rgba(46,32,16,0.07) 12%,
+    rgba(255,255,255,0.05) 46%,
+    rgba(255,255,255,0.26) 84%,
+    rgba(255,255,255,0.58) 97%,
+    rgba(120,96,62,0.4) 100%);
+}
+/* The dog-ear: the corner sits very slightly turned up, so there is
+   something to reach for. It breathes until the reader has turned a
+   couple of leaves, then holds still. */
+#zf-layer .zf-ear {
+  position:absolute; width:34px; height:34px;
+  left:calc(var(--zf-left) + var(--zf-w) - 34px);
+  top:calc(var(--zf-top) + var(--zf-h) - 34px);
+  clip-path:polygon(100% 0, 100% 100%, 0 100%);
+  background:linear-gradient(315deg, rgba(255,250,242,0.62), rgba(96,74,46,0.34));
+  box-shadow:-3px -3px 9px rgba(24,16,8,0.32);
+  opacity:0.85; transform-origin:100% 100%;
+  animation:zf-ear 5.5s ease-in-out infinite;
+  transition:opacity 420ms ease;
+}
+#zf-layer .zf-ear.gone { opacity:0; }
+@keyframes zf-ear {
+  0%, 62%, 100% { transform:scale(1); }
+  74% { transform:scale(1.5); }
+}
+#zf-layer .zf-chrome {
+  position:absolute; left:0; right:0; top:calc(var(--zf-top) + var(--zf-h) + 10px);
+  text-align:center; font-family:'IBM Plex Mono',monospace;
+  font-size:10px; letter-spacing:0.28em; text-transform:uppercase;
+  color:var(--zf-ink,#8a8776);
+}
+#zf-layer .zf-hint { margin-top:5px; opacity:0.62; transition:opacity 500ms ease; }
+#zf-layer .zf-hint.gone { opacity:0; }
+@media (prefers-reduced-motion: reduce) {
+  #zf-layer .zf-ear { animation:none; }
+  html.zf-on .snap-wrap { transition:none; }
 }
 </style>
 </helmet>
