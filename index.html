@@ -62,6 +62,28 @@ em.hl { font-style:italic; color:#c98a4a; }
    taller relative to its width, so the same object-position would push
    the crop off past the third girl — recentre it there instead. */
 @media (max-width:899px) { .img-girls3 { object-position:31% 42% !important; } }
+/* Vol 02's ambient score. A single quiet control, parked out of the
+   way of the leaf so it never sits on top of a photograph, and always
+   reachable while the volume is being read. */
+.music-btn{
+  position:fixed; right:18px; bottom:18px; z-index:40;
+  display:flex; align-items:center; gap:9px;
+  padding:9px 15px; border:1px solid rgba(111,58,44,0.28); border-radius:999px;
+  background:rgba(253,248,243,0.86); backdrop-filter:blur(6px);
+  font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:0.22em;
+  text-transform:uppercase; color:#6f3a2c; cursor:pointer;
+  box-shadow:0 6px 18px -8px rgba(76,48,36,0.5);
+  transition:color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.music-btn:hover{ color:#a8412a; border-color:rgba(168,65,42,0.45); background:rgba(253,248,243,0.96); }
+.music-btn:focus-visible{ outline:2px solid rgba(168,65,42,0.6); outline-offset:3px; }
+/* The glyph: a filled lozenge that pulses while the song plays and
+   sits still once it's paused. */
+.music-dot{ width:7px; height:7px; border-radius:50%; background:#a3705c; flex:none; }
+.music-btn.on .music-dot{ background:#a8412a; animation:music-pulse 2.2s ease-in-out infinite; }
+@keyframes music-pulse{ 0%,100%{ opacity:0.35; transform:scale(0.8); } 50%{ opacity:1; transform:scale(1.25); } }
+@media (prefers-reduced-motion: reduce){ .music-btn.on .music-dot{ animation:none; opacity:1; } }
+@media (max-width:899px){ .music-btn{ right:12px; bottom:12px; padding:8px 12px; font-size:9px; } }
 /* Spot foil: the one place in the volume that gets a metallic hit,
    with a sheen that drifts on its own and tracks the pointer when one
    is present. Everything else on the leaf stays quiet to pay for it. */
@@ -616,6 +638,10 @@ em.hl { font-style:italic; color:#c98a4a; }
   <sc-if value="{{ isVol02 }}" hint-placeholder-val="{{ false }}">
     <div class="snap-wrap vol02-wrap" style="color:#5c3a30; font-weight:300;">
 
+      <div class="music-btn {{ musicClass }}" onClick="{{ toggleMusic }}" onKeyDown="{{ toggleMusicKey }}" tabindex="0" role="button" aria-pressed="{{ musicPressed }}" aria-label="{{ musicLabel }}">
+        <span class="music-dot"></span><span>{{ musicText }}</span>
+      </div>
+
       <div class="snap-sec" style="background-color:#f3ebe2;">
         <div class="pg" style="width:min(64vh,660px); background:#fdf8f3;">
           <img src="uploads/pasted-1788323199098-0.png" alt="soft flowers, blurred" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 42%;">
@@ -1102,13 +1128,74 @@ function pageForLocation() {
   return PAGE_BY_PATH[p] || 'archive';
 }
 class Component extends DCLogic {
-  state = { page: 'archive' };
+  state = { page: 'archive', musicOn: false };
+  audio = null;
+  // Set once the reader presses pause: vol 02 then stays quiet for the
+  // rest of the visit rather than starting up again on every return.
+  musicOptOut = false;
+  armed = null;
   componentDidMount() {
     const initial = pageForLocation();
     if (initial !== this.state.page) this.setState({ page: initial });
+    this.syncMusic(initial);
     window.addEventListener('popstate', () => {
-      this.setState({ page: pageForLocation() });
+      const p = pageForLocation();
+      this.setState({ page: p });
+      this.syncMusic(p);
     });
+  }
+  // Vol 02's ambient score. Browsers refuse audio that isn't tied to a
+  // gesture, so a blocked play() arms a one-shot listener and the
+  // reader's next click or key press starts the song instead.
+  ensureAudio() {
+    if (!this.audio) {
+      this.audio = new Audio(ROUTE_BASE + '/uploads/rapunzel-theme.mp3');
+      this.audio.loop = true;
+      this.audio.preload = 'auto';
+      this.audio.volume = 0.35;
+    }
+    return this.audio;
+  }
+  disarm() {
+    if (!this.armed) return;
+    ['pointerdown', 'keydown', 'touchstart'].forEach((t) => {
+      window.removeEventListener(t, this.armed);
+    });
+    this.armed = null;
+  }
+  arm() {
+    if (this.armed) return;
+    this.armed = () => {
+      this.disarm();
+      if (this.state.page === 'vol02' && !this.musicOptOut) this.playMusic();
+    };
+    ['pointerdown', 'keydown', 'touchstart'].forEach((t) => {
+      window.addEventListener(t, this.armed, { once: true });
+    });
+  }
+  playMusic() {
+    const a = this.ensureAudio();
+    const played = a.play();
+    if (played && played.then) {
+      played.then(() => this.setState({ musicOn: true })).catch(() => {
+        this.setState({ musicOn: false });
+        this.arm();
+      });
+    } else {
+      this.setState({ musicOn: true });
+    }
+  }
+  pauseMusic() {
+    this.disarm();
+    if (this.audio) this.audio.pause();
+    this.setState({ musicOn: false });
+  }
+  syncMusic(p) {
+    if (p === 'vol02') {
+      if (!this.musicOptOut) this.playMusic();
+    } else {
+      this.pauseMusic();
+    }
   }
   // Spines are divs, so enter/space have to be wired up by hand to match
   // what a click already does.
@@ -1125,6 +1212,7 @@ class Component extends DCLogic {
       window.history.pushState({ page: p }, '', url);
     }
     this.setState({ page: p }, () => window.scrollTo(0, 0));
+    this.syncMusic(p);
   }
   renderVals() {
     const p = this.state.page;
@@ -1178,6 +1266,31 @@ class Component extends DCLogic {
         { item: 'disney songs', price: 'live MUSIC' },
         { item: 'table for eight', price: 'always' }
       ],
+      musicOn: this.state.musicOn,
+      musicClass: this.state.musicOn ? 'on' : '',
+      musicText: this.state.musicOn ? 'pause the song' : 'play the song',
+      musicLabel: this.state.musicOn ? 'pause the music' : 'play the music',
+      musicPressed: this.state.musicOn ? 'true' : 'false',
+      toggleMusic: () => {
+        if (this.state.musicOn) {
+          this.musicOptOut = true;
+          this.pauseMusic();
+        } else {
+          this.musicOptOut = false;
+          this.playMusic();
+        }
+      },
+      toggleMusicKey: (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+        e.preventDefault();
+        if (this.state.musicOn) {
+          this.musicOptOut = true;
+          this.pauseMusic();
+        } else {
+          this.musicOptOut = false;
+          this.playMusic();
+        }
+      },
       goArchive: () => this.go('archive'),
       goVol01: () => this.go('vol01'),
       goVol011: () => this.go('vol011'),
